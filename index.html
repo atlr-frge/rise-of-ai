@@ -173,34 +173,37 @@ a { color: inherit; text-decoration: none; }
 .hero-h1 .l2 { display: block; -webkit-text-stroke: 1px rgba(232,93,4,0.4); color: transparent; opacity: 0; animation: fadeUp 0.9s 0.45s ease forwards; }
 .hero-h1 .l3 { display: block; color: var(--ember); opacity: 0; animation: fadeUp 0.9s 0.6s ease forwards; }
 
-/* Glitch */
-.glitch { position: relative; }
-.glitch::before, .glitch::after {
+/* Glitch — scoped to .l1 span only */
+.hero-h1 .l1 { position: relative; }
+.hero-h1 .l1::before,
+.hero-h1 .l1::after {
   content: attr(data-text);
   position: absolute; top: 0; left: 0;
   width: 100%; height: 100%;
-  font: inherit; pointer-events: none;
+  font: inherit; letter-spacing: inherit;
+  text-transform: inherit; pointer-events: none;
+  white-space: nowrap;
 }
-.glitch::before {
-  color: rgba(0,200,255,0.6);
-  clip-path: polygon(0 28%, 100% 28%, 100% 46%, 0 46%);
+.hero-h1 .l1::before {
+  color: rgba(0,200,255,0.65);
+  clip-path: polygon(0 20%, 100% 20%, 100% 48%, 0 48%);
   animation: glitch-1 5s 3s steps(1) infinite;
 }
-.glitch::after {
-  color: rgba(232,93,4,0.7);
-  clip-path: polygon(0 58%, 100% 58%, 100% 72%, 0 72%);
+.hero-h1 .l1::after {
+  color: rgba(232,93,4,0.75);
+  clip-path: polygon(0 55%, 100% 55%, 100% 78%, 0 78%);
   animation: glitch-2 5s 3.1s steps(1) infinite;
 }
 @keyframes glitch-1 {
   0%,90%,100% { transform: none; opacity: 0; }
-  91% { transform: translateX(-4px); opacity: 0.9; }
-  92% { transform: translateX(3px); opacity: 0.6; }
+  91% { transform: translateX(-5px); opacity: 0.9; }
+  92% { transform: translateX(3px); opacity: 0.65; }
   93% { transform: none; opacity: 0; }
 }
 @keyframes glitch-2 {
   0%,90%,100% { transform: none; opacity: 0; }
-  91% { transform: translateX(4px); opacity: 0.8; }
-  92% { transform: translateX(-2px); opacity: 0.5; }
+  91% { transform: translateX(5px); opacity: 0.8; }
+  92% { transform: translateX(-3px); opacity: 0.5; }
   93% { transform: none; opacity: 0; }
 }
 
@@ -590,8 +593,8 @@ footer {
       An Atelier Superintelligence Briefing Series
     </div>
 
-    <h1 class="hero-h1 glitch" data-text="RISE OF AI">
-      <span class="l1">RISE</span>
+    <h1 class="hero-h1">
+      <span class="l1" data-text="RISE">RISE</span>
       <span class="l2">OF</span>
       <span class="l3">AI</span>
     </h1>
