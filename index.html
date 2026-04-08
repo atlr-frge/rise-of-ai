@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rise of AI — An Atelier Superintelligence Briefing</title>
+<meta name="description" content="Five market-moving ideas on AI's reshaping of power, labor, capital, and trust. A LinkedIn video series by Atelier Superintelligence × Verma Private Wealth.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════
+   RISE OF AI — Atelier Superintelligence Briefing
+   Five constraints. Five ideas. One turning point.
+   ═══════════════════════════════════════════════════ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg:          #060608;
+  --bg-card:     #0A0A0E;
+  --bg-surface:  #0F0F15;
+  --border:      rgba(255,255,255,0.06);
+  --ember:       #E85D04;
+  --ember-glow:  #F48C06;
+  --ember-dim:   rgba(232,93,4,0.15);
+  --cyan:        #00C8FF;
+  --cyan-dim:    rgba(0,200,255,0.08);
+  --white:       #FAFAFA;
+  --text:        #EAEDF2;
+  --text-2:      #7A8599;
+  --text-3:      #3A4050;
+  --display:     'Space Grotesk', sans-serif;
+  --body:        'Inter', sans-serif;
+  --mono:        'IBM Plex Mono', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--body);
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ── CUSTOM CURSOR ── */
+.cursor {
+  position: fixed;
+  width: 10px; height: 10px;
+  background: var(--ember);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+  mix-blend-mode: screen;
+}
+.cursor-ring {
+  position: fixed;
+  width: 40px; height: 40px;
+  border: 1px solid rgba(232,93,4,0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: all 0.12s ease-out;
+}
+.cursor.hover { width: 20px; height: 20px; background: var(--ember-glow); }
+.cursor-ring.hover { width: 60px; height: 60px; border-color: rgba(244,140,6,0.6); }
+
+/* ── NOISE GRAIN OVERLAY ── */
+.grain {
+  position: fixed; inset: 0; z-index: 9990;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px;
+  animation: grainShift 0.15s steps(1) infinite;
+}
+@keyframes grainShift {
+  0%  { transform: translate(0,0); }
+  10% { transform: translate(-2px, 1px); }
+  20% { transform: translate(2px, -1px); }
+  30% { transform: translate(-1px, 2px); }
+  40% { transform: translate(1px, -2px); }
+  50% { transform: translate(-2px, -1px); }
+  60% { transform: translate(2px, 1px); }
+  70% { transform: translate(-1px, -2px); }
+  80% { transform: translate(1px, 2px); }
+  90% { transform: translate(-2px, 2px); }
+  100%{ transform: translate(0,0); }
+}
+
+/* ── WEBGL CANVAS ── */
+#bg-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── NAV ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 20px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(6,6,8,0.4);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: all 0.4s ease;
+}
+.nav.scrolled {
+  padding: 14px 48px;
+  background: rgba(6,6,8,0.92);
+  border-bottom-color: rgba(232,93,4,0.12);
+}
+.nav-brand {
+  font-family: var(--mono); font-size: 0.65rem;
+  letter-spacing: 0.35em; color: var(--text-2);
+  text-transform: uppercase;
+}
+.nav-brand span { color: var(--ember); }
+.nav-right {
+  font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.2em; color: var(--text-3);
+  text-transform: uppercase;
+}
+.nav-right strong { color: var(--text-2); }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; align-items: flex-end;
+  padding: 0 48px 100px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 1100px;
+}
+
+.hero-eyebrow {
+  font-family: var(--mono); font-size: 0.62rem;
+  letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--cyan);
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s ease forwards;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block; width: 40px; height: 1px;
+  background: var(--cyan);
+}
+
+.hero-h1 {
+  font-family: var(--display);
+  font-size: clamp(4.5rem, 11vw, 10rem);
+  font-weight: 700;
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin-bottom: 48px;
+}
+.hero-h1 .l1 {
+  display: block;
+  color: var(--white);
+  opacity: 0;
+  animation: fadeUp 0.9s 0.4s ease forwards;
+}
+.hero-h1 .l2 {
+  display: block;
+  -webkit-text-stroke: 1.5px rgba(232,93,4,0.5);
+  color: transparent;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.55s ease forwards;
+}
+.hero-h1 .l3 {
+  display: block;
+  color: var(--ember);
+  opacity: 0;
+  animation: fadeUp 0.9s 0.7s ease forwards;
+}
+
+.hero-meta {
+  display: flex; align-items: center; gap: 48px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.9s ease forwards;
+}
+.hero-desc {
+  font-family: var(--body); font-size: 1rem;
+  color: var(--text-2); font-weight: 300;
+  max-width: 420px; line-height: 1.7;
+}
+.hero-stats {
+  display: flex; gap: 40px; flex-shrink: 0;
+}
+.hero-stat {
+  text-align: left;
+}
+.hero-stat-num {
+  font-family: var(--display); font-size: 2rem;
+  font-weight: 700; color: var(--ember);
+  line-height: 1;
+}
+.hero-stat-label {
+  font-family: var(--mono); font-size: 0.55rem;
+  letter-spacing: 0.2em; color: var(--text-3);
+  text-transform: uppercase; margin-top: 6px;
+}
+
+.hero-scroll {
+  position: absolute; bottom: 40px; right: 48px;
+  font-family: var(--mono); font-size: 0.55rem;
+  letter-spacing: 0.3em; color: var(--text-3);
+  text-transform: uppercase;
+  display: flex; align-items: center; gap: 12px;
+  writing-mode: vertical-rl;
+  opacity: 0;
+  animation: fadeIn 1s 1.4s ease forwards;
+}
+.hero-scroll::after {
+  content: '';
+  display: block; width: 1px; height: 60px;
+  background: linear-gradient(to bottom, var(--text-3), transparent);
+  animation: scrollLine 2s 1.8s ease infinite;
+}
+@keyframes scrollLine {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: top; }
+  51%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ── SECTION COMMON ── */
+section { position: relative; z-index: 1; }
+
+.section-label {
+  font-family: var(--mono); font-size: 0.58rem;
+  letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--text-3);
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 24px;
+}
+.section-label::before {
+  content: attr(data-num);
+  color: var(--ember); font-size: 0.5rem;
+}
+
+/* ── TICKER / MARQUEE ── */
+.ticker-wrap {
+  position: relative; z-index: 2;
+  overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  background: rgba(232,93,4,0.04);
+  padding: 14px 0;
+}
+.ticker {
+  display: flex; gap: 0;
+  white-space: nowrap;
+  animation: ticker 30s linear infinite;
+}
+.ticker-item {
+  font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--text-3);
+  padding: 0 40px;
+  flex-shrink: 0;
+}
+.ticker-item span { color: var(--ember); }
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── CONCEPT SECTION ── */
+.concept {
+  padding: 140px 48px;
+  max-width: 1200px; margin: 0 auto;
+}
+.concept-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+.concept-number {
+  font-family: var(--display); font-size: clamp(8rem, 20vw, 18rem);
+  font-weight: 700; line-height: 1;
+  -webkit-text-stroke: 1px rgba(232,93,4,0.12);
+  color: transparent;
+  pointer-events: none; user-select: none;
+  position: absolute; right: 0; top: -40px;
+}
+.concept-left { position: relative; }
+.concept-h2 {
+  font-family: var(--display); font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700; line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin-bottom: 24px;
+}
+.concept-h2 em {
+  font-style: normal;
+  color: var(--ember);
+}
+.concept-body {
+  font-size: 1.05rem; line-height: 1.75;
+  color: var(--text-2); font-weight: 300;
+  margin-bottom: 40px;
+}
+.concept-body strong { color: var(--text); font-weight: 500; }
+.concept-right {
+  display: flex; flex-direction: column; gap: 24px;
+}
+.concept-pill {
+  display: flex; align-items: center; gap: 20px;
+  padding: 20px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--ember);
+  transition: all 0.3s ease;
+}
+.concept-pill:hover {
+  background: rgba(232,93,4,0.04);
+  border-color: rgba(232,93,4,0.2);
+  border-left-color: var(--ember);
+  transform: translateX(4px);
+}
+.pill-icon {
+  font-size: 1.4rem; flex-shrink: 0;
+  width: 40px; text-align: center;
+}
+.pill-text {
+  font-family: var(--mono); font-size: 0.7rem;
+  letter-spacing: 0.05em; color: var(--text-2);
+  line-height: 1.5;
+}
+.pill-text strong {
+  display: block; color: var(--white);
+  font-size: 0.8rem; margin-bottom: 2px;
+}
+
+/* ── EPISODES ── */
+.episodes {
+  padding: 0 48px 160px;
+}
+.episodes-header {
+  padding-bottom: 64px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+}
+.episodes-title {
+  font-family: var(--display); font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700; letter-spacing: -0.025em;
+  max-width: 700px;
+}
+.episodes-title span { color: var(--ember); }
+
+/* ── EPISODE CARD ── */
+.episode-card {
+  display: grid;
+  grid-template-columns: 80px 1fr 340px;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  padding: 56px 0;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.episode-card::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 0;
+  background: linear-gradient(90deg, rgba(232,93,4,0.05), transparent);
+  transition: width 0.5s ease;
+}
+.episode-card:hover::before { width: 100%; }
+.episode-card:hover .ep-num { color: var(--ember); }
+.episode-card:hover .ep-title { -webkit-text-stroke: 0; color: var(--white); }
+
+.ep-num {
+  font-family: var(--display); font-size: 0.75rem;
+  font-weight: 700; letter-spacing: 0.15em;
+  color: var(--text-3);
+  padding-top: 6px;
+  transition: color 0.3s;
+}
+
+.ep-main { padding: 0 48px 0 0; }
+
+.ep-constraint {
+  font-family: var(--mono); font-size: 0.58rem;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.ep-constraint::before {
+  content: '';
+  display: inline-block; width: 6px; height: 6px;
+  background: var(--ember); border-radius: 50%;
+  animation: pulse 2s ease infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.6); }
+}
+
+.ep-title {
+  font-family: var(--display); font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700; line-height: 1.0;
+  letter-spacing: -0.025em;
+  -webkit-text-stroke: 0.5px var(--text-2);
+  color: transparent;
+  margin-bottom: 20px;
+  transition: all 0.4s ease;
+}
+
+.ep-hook {
+  font-size: 0.95rem; line-height: 1.65;
+  color: var(--text-2); font-weight: 300;
+  max-width: 540px;
+}
+.ep-hook em {
+  font-style: italic; color: var(--white);
+}
+
+.ep-sidebar {
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  padding-left: 40px;
+  border-left: 1px solid var(--border);
+}
+
+.ep-punchline {
+  font-family: var(--display); font-size: 0.85rem;
+  font-weight: 600; line-height: 1.4;
+  color: var(--text); font-style: italic;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+.ep-punchline::before {
+  content: '"';
+  display: block;
+  font-size: 2rem; line-height: 0.5;
+  color: var(--ember); margin-bottom: 12px;
+  font-family: Georgia, serif;
+}
+
+.ep-stats {
+  display: flex; flex-direction: column; gap: 16px;
+}
+.ep-stat {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.ep-stat-val {
+  font-family: var(--display); font-size: 1.4rem;
+  font-weight: 700; color: var(--ember);
+  line-height: 1;
+}
+.ep-stat-label {
+  font-family: var(--mono); font-size: 0.55rem;
+  letter-spacing: 0.18em; color: var(--text-3);
+  text-transform: uppercase;
+}
+
+/* ── DATA REVEAL ANIMATION ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ── GLITCH TEXT EFFECT ── */
+.glitch {
+  position: relative;
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  font-family: inherit; font-size: inherit;
+  font-weight: inherit; line-height: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  pointer-events: none;
+}
+.glitch::before {
+  color: var(--cyan);
+  clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
+  animation: glitch-1 4s 2s steps(1) infinite;
+}
+.glitch::after {
+  color: var(--ember);
+  clip-path: polygon(0 55%, 100% 55%, 100% 70%, 0 70%);
+  animation: glitch-2 4s 2.1s steps(1) infinite;
+}
+@keyframes glitch-1 {
+  0%, 88%, 100% { transform: none; opacity: 0; }
+  89% { transform: translateX(-3px); opacity: 0.8; }
+  90% { transform: translateX(2px); opacity: 0.6; }
+  91% { transform: translateX(-1px); opacity: 0; }
+}
+@keyframes glitch-2 {
+  0%, 88%, 100% { transform: none; opacity: 0; }
+  89% { transform: translateX(3px); opacity: 0.7; }
+  90% { transform: translateX(-2px); opacity: 0.5; }
+  91% { transform: translateX(1px); opacity: 0; }
+}
+
+/* ── SIGNAL BAR (horizontal visual) ── */
+.signal-bars {
+  display: flex; align-items: flex-end; gap: 3px;
+  height: 24px;
+}
+.signal-bar {
+  width: 4px;
+  background: var(--ember);
+  opacity: 0.2;
+  border-radius: 1px;
+  transition: opacity 0.3s;
+}
+.signal-bar.active { opacity: 1; }
+.signal-bar:nth-child(1) { height: 6px; }
+.signal-bar:nth-child(2) { height: 10px; }
+.signal-bar:nth-child(3) { height: 14px; }
+.signal-bar:nth-child(4) { height: 18px; }
+.signal-bar:nth-child(5) { height: 24px; }
+
+/* ── FREQUENCY LINES (decorative) ── */
+.freq-lines {
+  position: absolute; right: 0; top: 50%;
+  transform: translateY(-50%);
+  display: flex; align-items: center; gap: 2px;
+  opacity: 0.06; pointer-events: none;
+}
+.freq-line {
+  width: 1px; height: 120px;
+  background: var(--white);
+}
+
+/* ── PARTNERSHIP SECTION ── */
+.partnership {
+  padding: 100px 48px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center;
+  gap: 80px;
+  max-width: 1200px; margin: 0 auto;
+}
+.partnership-label {
+  font-family: var(--mono); font-size: 0.58rem;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--text-3); margin-bottom: 24px;
+}
+.partnership-names {
+  display: flex; align-items: center; gap: 32px;
+}
+.partner-name {
+  font-family: var(--display); font-size: 1.1rem;
+  font-weight: 600; letter-spacing: 0.02em;
+  color: var(--text);
+}
+.partner-sep {
+  font-family: var(--mono); color: var(--ember);
+  font-size: 1rem;
+}
+.partnership-desc {
+  font-size: 0.9rem; line-height: 1.7;
+  color: var(--text-3); font-weight: 300;
+  max-width: 480px;
+  flex-shrink: 0;
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 48px;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  position: relative; z-index: 1;
+}
+.footer-brand {
+  font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.3em; color: var(--text-3);
+  text-transform: uppercase;
+}
+.footer-brand span { color: var(--ember); }
+.footer-disclaimer {
+  font-family: var(--mono); font-size: 0.5rem;
+  letter-spacing: 0.08em; color: var(--text-3);
+  max-width: 500px; line-height: 1.6; text-align: right;
+}
+
+/* ── SCROLL PROGRESS BAR ── */
+.progress-bar {
+  position: fixed; top: 0; left: 0;
+  height: 2px; z-index: 9997;
+  background: linear-gradient(90deg, var(--ember), var(--ember-glow));
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.1s linear;
+}
+
+/* ── PARTICLE CANVAS ── */
+#particle-canvas {
+  position: fixed; inset: 0; z-index: 1;
+  pointer-events: none;
+}
+
+/* ── KEYFRAMES ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+  .grain, .glitch::before, .glitch::after { display: none; }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .nav { padding: 16px 24px; }
+  .hero { padding: 0 24px 80px; }
+  .hero-meta { flex-direction: column; gap: 32px; }
+  .concept { padding: 80px 24px; }
+  .concept-grid { grid-template-columns: 1fr; gap: 40px; }
+  .concept-number { display: none; }
+  .episodes { padding: 0 24px 100px; }
+  .episode-card { grid-template-columns: 50px 1fr; grid-template-rows: auto auto; }
+  .ep-sidebar { grid-column: 2; border-left: none; border-top: 1px solid var(--border); padding: 24px 0 0; margin-top: 24px; }
+  .partnership { padding: 60px 24px; flex-direction: column; gap: 32px; }
+  .footer { padding: 32px 24px; flex-direction: column; gap: 16px; text-align: center; }
+  .footer-disclaimer { text-align: center; }
+  body { cursor: auto; }
+  .cursor, .cursor-ring { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Grain overlay -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+<!-- Scroll progress bar -->
+<div class="progress-bar" id="progressBar" role="progressbar" aria-label="Scroll progress"></div>
+
+<!-- WebGL Background -->
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+<!-- Particle canvas -->
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-brand">
+    <span>ATELIER</span> SUPERINTELLIGENCE
+  </div>
+  <div class="nav-right">
+    A briefing series / <strong>Verma Private Wealth</strong>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow">An Atelier Superintelligence Briefing Series</p>
+
+    <h1 class="hero-h1 glitch" data-text="RISE OF AI">
+      <span class="l1">RISE</span>
+      <span class="l2">OF</span>
+      <span class="l3">AI</span>
+    </h1>
+
+    <div class="hero-meta">
+      <p class="hero-desc">
+        Five market-moving ideas. Five structural constraints.
+        The AI transition isn't theoretical — it's happening in <strong>power grids, payrolls, capital flows, and courtrooms</strong>.
+      </p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-count="5">0</div>
+          <div class="hero-stat-label">Episodes</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-count="2026">0</div>
+          <div class="hero-stat-label">Series year</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">$2.5T</div>
+          <div class="hero-stat-label">AI spend forecast</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">Scroll</div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker">
+    <span class="ticker-item">Power &amp; Grid Capacity <span>///</span></span>
+    <span class="ticker-item">AI Agents &amp; Automation <span>///</span></span>
+    <span class="ticker-item">Labor Market Disruption <span>///</span></span>
+    <span class="ticker-item">Capital Narrative Shift <span>///</span></span>
+    <span class="ticker-item">Trust &amp; Verification <span>///</span></span>
+    <span class="ticker-item">$660B Big Tech Capex <span>///</span></span>
+    <span class="ticker-item">1,000 TWh by 2026 <span>///</span></span>
+    <span class="ticker-item">40% Enterprise Agent Adoption <span>///</span></span>
+    <span class="ticker-item">30,000 Jobs Cut <span>///</span></span>
+    <span class="ticker-item">HALO Trade Dominant <span>///</span></span>
+    <span class="ticker-item">EU AI Act August 2026 <span>///</span></span>
+    <span class="ticker-item">900% Rise in Deepfakes <span>///</span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item">Power &amp; Grid Capacity <span>///</span></span>
+    <span class="ticker-item">AI Agents &amp; Automation <span>///</span></span>
+    <span class="ticker-item">Labor Market Disruption <span>///</span></span>
+    <span class="ticker-item">Capital Narrative Shift <span>///</span></span>
+    <span class="ticker-item">Trust &amp; Verification <span>///</span></span>
+    <span class="ticker-item">$660B Big Tech Capex <span>///</span></span>
+    <span class="ticker-item">1,000 TWh by 2026 <span>///</span></span>
+    <span class="ticker-item">40% Enterprise Agent Adoption <span>///</span></span>
+    <span class="ticker-item">30,000 Jobs Cut <span>///</span></span>
+    <span class="ticker-item">HALO Trade Dominant <span>///</span></span>
+    <span class="ticker-item">EU AI Act August 2026 <span>///</span></span>
+    <span class="ticker-item">900% Rise in Deepfakes <span>///</span></span>
+  </div>
+</div>
+
+<!-- CONCEPT SECTION -->
+<section class="concept" id="concept">
+  <div class="concept-grid">
+    <div class="concept-left reveal">
+      <div class="section-label" data-num="01">The concept</div>
+      <h2 class="concept-h2">
+        One <em>big idea</em>.<br>
+        Explored to its<br>
+        logical end.
+      </h2>
+      <p class="concept-body">
+        This isn't an AI news roundup. Each episode is anchored to a single <strong>structural constraint</strong> — a real friction point in the transition — and follows it to where it matters: your portfolio, your workforce, your legal exposure.
+      </p>
+      <p class="concept-body">
+        Produced with ElevenLabs Pro Voice. Structured like Rushkoff. Sponsored by <strong>Verma Private Wealth | Canaccord Genuity</strong>. Weekly on LinkedIn.
+      </p>
+    </div>
+    <div class="concept-right reveal reveal-delay-2">
+      <div class="concept-pill">
+        <div class="pill-icon">⚡</div>
+        <div class="pill-text">
+          <strong>One thesis per episode</strong>
+          Not AI news — one idea explored to its logical end
+        </div>
+      </div>
+      <div class="concept-pill">
+        <div class="pill-icon">📡</div>
+        <div class="pill-text">
+          <strong>Calm voice, intense implications</strong>
+          Professor delivery, provocateur content
+        </div>
+      </div>
+      <div class="concept-pill">
+        <div class="pill-icon">📊</div>
+        <div class="pill-text">
+          <strong>Concrete mechanisms, not opinions</strong>
+          Data-anchored analysis investors can act on
+        </div>
+      </div>
+      <div class="concept-pill">
+        <div class="pill-icon">🔬</div>
+        <div class="pill-text">
+          <strong>Second-order effects only</strong>
+          What everyone else misses after the obvious take
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EPISODES -->
+<section class="episodes" id="episodes">
+  <div class="episodes-header reveal">
+    <div class="section-label" data-num="02">The briefings</div>
+    <h2 class="episodes-title">Five constraints.<br><span>Five turning points.</span></h2>
+  </div>
+
+  <!-- EP 1 -->
+  <article class="episode-card reveal" data-ep="1">
+    <div class="ep-num">EP. 01</div>
+    <div class="ep-main">
+      <div class="ep-constraint">Power &amp; Grid Capacity</div>
+      <h3 class="ep-title">The Grid Is the Limit</h3>
+      <p class="ep-hook">
+        <em>"AI isn't running out of ideas. It's running out of electricity."</em>
+        The AI race is becoming a power race. $660–690B in big tech capex lands on one constraint: where the power comes from.
+      </p>
+    </div>
+    <div class="ep-sidebar">
+      <div class="ep-punchline">The AI race is becoming a power race.</div>
+      <div class="ep-stats">
+        <div class="ep-stat">
+          <div class="ep-stat-val">$660B</div>
+          <div class="ep-stat-label">Big tech capex 2026</div>
+        </div>
+        <div class="ep-stat">
+          <div class="ep-stat-val">1,000 TWh</div>
+          <div class="ep-stat-label">Data center electricity by 2026</div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- EP 2 -->
+  <article class="episode-card reveal reveal-delay-1" data-ep="2">
+    <div class="ep-num">EP. 02</div>
+    <div class="ep-main">
+      <div class="ep-constraint">AI Agents &amp; Production Automation</div>
+      <h3 class="ep-title">The Agent Moment</h3>
+      <p class="ep-hook">
+        <em>"AI just stopped answering questions. It started doing the work."</em>
+        40% of enterprise apps will have embedded AI agents by end of 2026. This is the shift from chatbot to co-worker.
+      </p>
+    </div>
+    <div class="ep-sidebar">
+      <div class="ep-punchline">AI just went from chatbot to co-worker.</div>
+      <div class="ep-stats">
+        <div class="ep-stat">
+          <div class="ep-stat-val">40%</div>
+          <div class="ep-stat-label">Enterprise apps with AI agents</div>
+        </div>
+        <div class="ep-stat">
+          <div class="ep-stat-val">$7.6B</div>
+          <div class="ep-stat-label">Agent market size</div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- EP 3 -->
+  <article class="episode-card reveal reveal-delay-2" data-ep="3">
+    <div class="ep-num">EP. 03</div>
+    <div class="ep-main">
+      <div class="ep-constraint">Labor Market Disruption</div>
+      <h3 class="ep-title">The Labor Reckoning</h3>
+      <p class="ep-hook">
+        <em>"Companies aren't firing people because AI works. They're firing people because AI might."</em>
+        ~30,000 tech jobs cut in early 2026. Job loss concern jumped 28% → 40%. The IMF calls it "like a tsunami."
+      </p>
+    </div>
+    <div class="ep-sidebar">
+      <div class="ep-punchline">AI isn't replacing workers. It's replacing the business case for hiring them.</div>
+      <div class="ep-stats">
+        <div class="ep-stat">
+          <div class="ep-stat-val">30K</div>
+          <div class="ep-stat-label">Tech jobs cut early 2026</div>
+        </div>
+        <div class="ep-stat">
+          <div class="ep-stat-val">1.3M</div>
+          <div class="ep-stat-label">New AI jobs (LinkedIn)</div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- EP 4 -->
+  <article class="episode-card reveal reveal-delay-3" data-ep="4">
+    <div class="ep-num">EP. 04</div>
+    <div class="ep-main">
+      <div class="ep-constraint">Capital Narrative Shift &amp; the HALO Trade</div>
+      <h3 class="ep-title">Atoms Are Fashionable Again</h3>
+      <p class="ep-hook">
+        <em>"For twenty years, software ate the world. Now AI is eating software."</em>
+        The HALO Trade is dominant on Wall Street. Heavy Assets, Low Obsolescence. Nuclear, uranium, and grid infrastructure at record highs.
+      </p>
+    </div>
+    <div class="ep-sidebar">
+      <div class="ep-punchline">AI makes atoms fashionable again.</div>
+      <div class="ep-stats">
+        <div class="ep-stat">
+          <div class="ep-stat-val">$2.5T</div>
+          <div class="ep-stat-label">Global AI spend forecast 2026</div>
+        </div>
+        <div class="ep-stat">
+          <div class="ep-stat-val">44%</div>
+          <div class="ep-stat-label">Year-over-year growth</div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- EP 5 -->
+  <article class="episode-card reveal reveal-delay-4" data-ep="5">
+    <div class="ep-num">EP. 05</div>
+    <div class="ep-main">
+      <div class="ep-constraint">Trust, Liability &amp; EU AI Act</div>
+      <h3 class="ep-title">The Verification Crisis</h3>
+      <p class="ep-hook">
+        <em>"AI can now generate anything. But nobody can prove it got it right."</em>
+        EU AI Act enforcement begins August 2, 2026. Deepfake cases up 900%. Only 6% of engineers fully trust AI output.
+      </p>
+    </div>
+    <div class="ep-sidebar">
+      <div class="ep-punchline">Nobody can prove AI didn't lie. And in August, that becomes illegal.</div>
+      <div class="ep-stats">
+        <div class="ep-stat">
+          <div class="ep-stat-val">Aug 2026</div>
+          <div class="ep-stat-label">EU AI Act enforcement</div>
+        </div>
+        <div class="ep-stat">
+          <div class="ep-stat-val">900%</div>
+          <div class="ep-stat-label">Deepfake case increase</div>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- PARTNERSHIP -->
+<section class="partnership reveal" id="about">
+  <div>
+    <div class="partnership-label">Produced in partnership with</div>
+    <div class="partnership-names">
+      <span class="partner-name">Atelier Superintelligence</span>
+      <span class="partner-sep">×</span>
+      <span class="partner-name">Verma Private Wealth<br><span style="font-weight:300;font-size:0.8rem;color:var(--text-2);">Canaccord Genuity</span></span>
+    </div>
+  </div>
+  <p class="partnership-desc">
+    A weekly LinkedIn video briefing. Each episode: 3 minutes 45 seconds. One constraint. One mechanism. One second-order effect you didn't see coming. Produced with AI-generated avatars, ElevenLabs Pro Voice, and a Rushkoff-inspired editorial structure.
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <span>Atelier</span> Superintelligence — atlr.pro
+  </div>
+  <div class="footer-disclaimer">
+    For informational purposes only. Not investment advice. Past performance does not guarantee future results. Verma Private Wealth / Canaccord Genuity.
+  </div>
+</footer>
+
+<script>
+/* ════════════════════════════════════════════
+   RISE OF AI — JavaScript
+   WebGL shader · Particles · Cursor · Scroll
+   ════════════════════════════════════════════ */
+
+// ── REDUCED MOTION CHECK ──
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ══════════════════════════════════════════════
+// WEBGL ANIMATED BACKGROUND SHADER
+// ══════════════════════════════════════════════
+(function initWebGL() {
+  const canvas = document.getElementById('bg-canvas');
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const vsSource = `
+    attribute vec2 a_pos;
+    void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }
+  `;
+
+  // Animated noise field — ember tones, subtle, cinematic
+  const fsSource = `
+    precision mediump float;
+    uniform float u_time;
+    uniform vec2  u_res;
+    uniform vec2  u_mouse;
+
+    vec3 mod289(vec3 x) { return x - floor(x * (1./289.)) * 289.; }
+    vec2 mod289(vec2 x) { return x - floor(x * (1./289.)) * 289.; }
+    vec3 permute(vec3 x) { return mod289(((x*34.) + 1.) * x); }
+
+    float snoise(vec2 v) {
+      const vec4 C = vec4(0.211324865405187, 0.366025403784439,
+                         -0.577350269189626, 0.024390243902439);
+      vec2 i = floor(v + dot(v, C.yy));
+      vec2 x0 = v - i + dot(i, C.xx);
+      vec2 i1 = (x0.x > x0.y) ? vec2(1.,0.) : vec2(0.,1.);
+      vec4 x12 = x0.xyxy + C.xxzz;
+      x12.xy -= i1;
+      i = mod289(i);
+      vec3 p = permute(permute(i.y + vec3(0., i1.y, 1.))
+              + i.x + vec3(0., i1.x, 1.));
+      vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.);
+      m = m*m; m = m*m;
+      vec3 x = 2. * fract(p * C.www) - 1.;
+      vec3 h = abs(x) - 0.5;
+      vec3 ox = floor(x + 0.5);
+      vec3 a0 = x - ox;
+      m *= 1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h);
+      vec3 g;
+      g.x = a0.x * x0.x + h.x * x0.y;
+      g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+      return 130. * dot(m, g);
+    }
+
+    void main() {
+      vec2 uv = gl_FragCoord.xy / u_res;
+      vec2 mouse = u_mouse / u_res;
+      float t = u_time * 0.18;
+
+      // Layered noise
+      float n1 = snoise(uv * 2.2 + vec2(t * 0.3, t * 0.15));
+      float n2 = snoise(uv * 4.8 + vec2(-t * 0.2, t * 0.25));
+      float n3 = snoise(uv * 1.1 + vec2(t * 0.1, -t * 0.1));
+      float noise = (n1 * 0.55 + n2 * 0.3 + n3 * 0.15) * 0.5 + 0.5;
+
+      // Mouse influence (subtle warm glow)
+      float dist = length(uv - mouse);
+      float mouseglow = 0.04 * smoothstep(0.5, 0.0, dist);
+
+      // Color: deep dark bg with ember haze
+      vec3 bg    = vec3(0.024, 0.024, 0.032);      // #060608
+      vec3 ember = vec3(0.910, 0.361, 0.016);       // #E85D04
+      vec3 deep  = vec3(0.04,  0.04,  0.06);
+
+      // Lower-left ember bloom
+      float bloom = smoothstep(1.0, 0.0, length(uv - vec2(0.1, 0.85)));
+      vec3 col = mix(bg, deep, noise * 0.3);
+      col += ember * bloom * 0.04;
+      col += ember * mouseglow;
+
+      // Vignette
+      float vig = 1.0 - smoothstep(0.4, 1.2, length(uv - 0.5) * 1.6);
+      col *= 0.7 + vig * 0.3;
+
+      gl_FragColor = vec4(col, 1.0);
+    }
+  `;
+
+  function compileShader(type, source) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, source);
+    gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+      console.warn('Shader error:', gl.getShaderInfoLog(s));
+      gl.deleteShader(s); return null;
+    }
+    return s;
+  }
+
+  const vs = compileShader(gl.VERTEX_SHADER, vsSource);
+  const fs = compileShader(gl.FRAGMENT_SHADER, fsSource);
+  if (!vs || !fs) return;
+
+  const prog = gl.createProgram();
+  gl.attachShader(prog, vs);
+  gl.attachShader(prog, fs);
+  gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+    console.warn('Program link error:', gl.getProgramInfoLog(prog));
+    return;
+  }
+
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+
+  const aPos   = gl.getAttribLocation(prog, 'a_pos');
+  const uTime  = gl.getUniformLocation(prog, 'u_time');
+  const uRes   = gl.getUniformLocation(prog, 'u_res');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  let mx = 0, my = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+  let start = null;
+  function render(ts) {
+    if (!start) start = ts;
+    const t = (ts - start) * 0.001;
+
+    gl.useProgram(prog);
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.enableVertexAttribArray(aPos);
+    gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+    gl.uniform1f(uTime, t);
+    gl.uniform2f(uRes, canvas.width, canvas.height);
+    gl.uniform2f(uMouse, mx, canvas.height - my);
+
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  requestAnimationFrame(render);
+})();
+
+// ══════════════════════════════════════════════
+// PARTICLE SYSTEM
+// ══════════════════════════════════════════════
+(function initParticles() {
+  if (prefersReducedMotion) return;
+
+  const canvas = document.getElementById('particle-canvas');
+  const ctx    = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const particles = [];
+  const MAX = 60;
+  let mx = canvas.width / 2, my = canvas.height / 2;
+
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+  class Particle {
+    constructor() { this.reset(true); }
+    reset(initial = false) {
+      this.x = initial ? Math.random() * canvas.width : mx + (Math.random() - 0.5) * 40;
+      this.y = initial ? Math.random() * canvas.height : my + (Math.random() - 0.5) * 40;
+      this.vx = (Math.random() - 0.5) * 0.4;
+      this.vy = (Math.random() - 0.5) * 0.4 - 0.1;
+      this.r  = Math.random() * 1.5 + 0.5;
+      this.life = 1;
+      this.decay = Math.random() * 0.003 + 0.001;
+      this.ember = Math.random() > 0.6;
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.life -= this.decay;
+      if (this.life <= 0) this.reset();
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      const alpha = this.life * 0.3;
+      ctx.fillStyle = this.ember
+        ? `rgba(232,93,4,${alpha})`
+        : `rgba(0,200,255,${alpha * 0.3})`;
+      ctx.fill();
+    }
+  }
+
+  for (let i = 0; i < MAX; i++) particles.push(new Particle());
+
+  // Cursor trail
+  const trail = [];
+  const TRAIL_LEN = 12;
+  document.addEventListener('mousemove', e => {
+    trail.push({ x: e.clientX, y: e.clientY, life: 1 });
+    if (trail.length > TRAIL_LEN) trail.shift();
+  });
+
+  function frame() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Cursor trail
+    for (let i = 0; i < trail.length; i++) {
+      const p = trail[i];
+      const t = i / trail.length;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, t * 3, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(232,93,4,${t * 0.25})`;
+      ctx.fill();
+    }
+
+    // Draw connection lines between near particles
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const d = Math.sqrt(dx*dx + dy*dy);
+        if (d < 120) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(232,93,4,${(1 - d/120) * 0.06})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+// ══════════════════════════════════════════════
+// CUSTOM CURSOR
+// ══════════════════════════════════════════════
+(function initCursor() {
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('cursorRing');
+  if (!cursor || !ring) return;
+
+  let cx = 0, cy = 0;
+  let rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => { cx = e.clientX; cy = e.clientY; });
+
+  function moveCursor() {
+    cursor.style.left = cx + 'px';
+    cursor.style.top  = cy + 'px';
+    rx += (cx - rx) * 0.15;
+    ry += (cy - ry) * 0.15;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(moveCursor);
+  }
+  moveCursor();
+
+  document.querySelectorAll('a, button, .episode-card, .concept-pill').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.classList.add('hover');
+      ring.classList.add('hover');
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.classList.remove('hover');
+      ring.classList.remove('hover');
+    });
+  });
+})();
+
+// ══════════════════════════════════════════════
+// SCROLL ANIMATIONS
+// ══════════════════════════════════════════════
+(function initScroll() {
+  const nav  = document.getElementById('nav');
+  const prog = document.getElementById('progressBar');
+
+  function onScroll() {
+    const scrolled = window.scrollY;
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = scrolled / maxScroll;
+
+    // Nav state
+    if (scrolled > 60) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+
+    // Progress bar
+    if (prog) prog.style.transform = `scaleX(${pct})`;
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+})();
+
+// ══════════════════════════════════════════════
+// COUNT UP ANIMATION
+// ══════════════════════════════════════════════
+(function initCounters() {
+  const counters = document.querySelectorAll('[data-count]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el  = entry.target;
+      const end = parseInt(el.dataset.count);
+      const dur = 1400;
+      const start = performance.now();
+      function step(now) {
+        const pct = Math.min((now - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - pct, 3);
+        el.textContent = Math.round(eased * end);
+        if (pct < 1) requestAnimationFrame(step);
+        else el.textContent = end;
+      }
+      requestAnimationFrame(step);
+      observer.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(el => observer.observe(el));
+})();
+
+// ══════════════════════════════════════════════
+// EPISODE CARD MAGNETIC HOVER
+// ══════════════════════════════════════════════
+(function initMagnetic() {
+  if (prefersReducedMotion) return;
+
+  document.querySelectorAll('.episode-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width  / 2;
+      const y = e.clientY - rect.top  - rect.height / 2;
+      const tiltX = (y / rect.height) * 1.5;
+      const tiltY = -(x / rect.width) * 1.5;
+      card.style.transform = `perspective(1200px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-2px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+})();
+
+// ══════════════════════════════════════════════
+// SIGNAL BARS — ANIMATED
+// ══════════════════════════════════════════════
+(function initSignalBars() {
+  // Inject animated signal bar decorations into episode sidebar
+  document.querySelectorAll('.ep-sidebar').forEach(sidebar => {
+    const sb = document.createElement('div');
+    sb.className = 'signal-bars';
+    sb.setAttribute('aria-hidden', 'true');
+    for (let i = 0; i < 5; i++) {
+      const bar = document.createElement('div');
+      bar.className = 'signal-bar';
+      sb.appendChild(bar);
+    }
+    sidebar.appendChild(sb);
+
+    // Animate bars randomly
+    const bars = sb.querySelectorAll('.signal-bar');
+    function animateBars() {
+      const level = Math.floor(Math.random() * 6);
+      bars.forEach((b, i) => {
+        b.classList.toggle('active', i < level);
+      });
+    }
+    setInterval(animateBars, 800 + Math.random() * 400);
+    animateBars();
+  });
+})();
+
+// ══════════════════════════════════════════════
+// GLITCH EFFECT — TRIGGERED ON HOVER
+// ══════════════════════════════════════════════
+(function initGlitch() {
+  const h1 = document.querySelector('.hero-h1');
+  if (!h1 || prefersReducedMotion) return;
+
+  // Already handled via CSS animations — add data-text to spans too
+  const lines = h1.querySelectorAll('.l1, .l2, .l3');
+  lines.forEach(l => {
+    if (!l.dataset.text) l.dataset.text = l.textContent;
+  });
+})();
+
+</script>
+</body>
+</html>
