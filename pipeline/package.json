@@ -1,0 +1,17 @@
+{
+  "name": "rise-of-ai-pipeline",
+  "version": "1.0.0",
+  "description": "HeyGen V3 + Seedance 2.0 production pipeline for Rise of AI series",
+  "type": "module",
+  "scripts": {
+    "generate": "node pipeline.js generate",
+    "status": "node pipeline.js status",
+    "list-avatars": "node pipeline.js list-avatars",
+    "list-voices": "node pipeline.js list-voices",
+    "episode": "node pipeline.js episode"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "node-fetch": "^3.3.2"
+  }
+}
