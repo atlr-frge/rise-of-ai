@@ -1,0 +1,5 @@
+# Validation harness regenerates these every run
+screenshots/validation/
+
+# macOS
+.DS_Store
