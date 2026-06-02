@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="220" viewBox="0 0 1080 220">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&amp;display=swap');
+      .wm{font-family:'Inter',sans-serif;font-weight:900;font-size:150px;letter-spacing:-3px}
+    </style>
+  </defs>
+  <!-- single-color (mono) wordmark — recolor fill as needed (#FAFAFA shown) -->
+  <text x="20" y="160" class="wm" fill="#FAFAFA">MATERIALITY</text>
+</svg>

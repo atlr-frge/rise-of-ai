@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="300" viewBox="0 0 1080 300">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&amp;family=JetBrains+Mono:wght@700&amp;display=swap');
+      .wm{font-family:'Inter',sans-serif;font-weight:900;font-size:150px;letter-spacing:-3px}
+      .sub{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:23px;letter-spacing:6.5px;fill:#8a847a}
+    </style>
+  </defs>
+  <!-- full lockup: wordmark + descriptor -->
+  <text x="22" y="160" class="wm"><tspan fill="#FAFAFA">MATERIAL</tspan><tspan fill="#E85D04">ITY</tspan></text>
+  <text x="26" y="225" class="sub">AN ATELIER SUPERINTELLIGENCE BRIEFING</text>
+</svg>
