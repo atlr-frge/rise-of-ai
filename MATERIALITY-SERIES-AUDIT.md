@@ -99,7 +99,10 @@ resets it. The trailer plants all five so each episode is both standalone and a 
 ---
 
 ## Recommended next actions (in order)
-1. **Decision:** Canaccord/Al on-camera or off? (blocks the re-cut)
-2. **Freshness research pass:** refresh the dated stats in all five "why now" blocks to June 2026.
-3. **Re-cut Episodes 2–5** to the new hybrid format (Ep 1 is the template).
+1. ~~**Decision:** Canaccord/Al on-camera or off?~~ ✅ **Resolved 2026-06-02: off-camera.** No
+   always-on bug, no Al call-in; "compliance-cleared through Canaccord" stays an off-camera fact.
+2. **Freshness research pass:** refresh the dated stats in all five "why now" blocks to June
+   2026. *(Partially done in the re-cut — Ep 5 date fixed; all figures tagged `[verify]`.)*
+3. ~~**Re-cut Episodes 2–5**~~ ✅ **Done:** [MATERIALITY-EPISODES-2-5.md](MATERIALITY-EPISODES-2-5.md),
+   single-story format, avatar-led, Canaccord/Al dropped, dates refreshed.
 4. **Lock the macro-CTA** and build the per-episode verdict share-card.
