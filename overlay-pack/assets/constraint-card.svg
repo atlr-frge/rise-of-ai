@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&amp;display=swap');
+      .h{font-family:'Inter',sans-serif;font-weight:900;font-size:118px;fill:#FAFAFA}</style>
+  </defs>
+  <rect width="1080" height="1920" fill="#E85D04"/>
+  <text x="140" y="900" class="h">
+    <tspan x="140" dy="0">The bottleneck</tspan>
+    <tspan x="140" dy="130">on AI isn't</tspan>
+    <tspan x="140" dy="130">intelligence.</tspan>
+    <tspan x="140" dy="160">It's electricity.</tspan>
+  </text>
+  <!-- swap the copy per episode; keep white-on-ember + this size -->
+</svg>

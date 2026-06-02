@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Materiality — Brand Overlay Pack (export-ready)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=JetBrains+Mono:wght@400;700&family=Caveat:wght@700&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ember:#E85D04; --glow:#F48C06; --black:#0A0A0A; --white:#FAFAFA;
+    --paper:#F1EBDD; --noise:#6B6B6B; --green:#00B140;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:#111;font-family:'Inter',sans-serif;color:#ddd;display:flex;flex-direction:column;align-items:center}
+
+  /* ---- control bar (NOT part of the export) ---- */
+  .bar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;flex-wrap:wrap;gap:6px;align-items:center;
+    padding:10px 14px;background:#0c0c0c;border-bottom:1px solid #222;font-size:12px}
+  .bar b{color:var(--ember);letter-spacing:.12em;text-transform:uppercase;margin-right:8px}
+  .bar button{background:#1b1b1b;color:#ddd;border:1px solid #333;border-radius:6px;padding:5px 9px;cursor:pointer;font-size:12px}
+  .bar button.on{background:var(--ember);color:#000;border-color:var(--ember);font-weight:700}
+  .bar .sep{width:1px;height:18px;background:#333;margin:0 4px}
+
+  /* ---- the export stage: EXACTLY 1080x1920 (9:16) ---- */
+  .viewport{margin-top:54px;flex:1;display:flex;align-items:center;justify-content:center;width:100%}
+  #stage{width:1080px;height:1920px;position:relative;overflow:hidden;
+    transform-origin:center;transform:scale(.42);box-shadow:0 0 0 1px #333}
+  /* background modes */
+  #stage.bg-alpha{background:
+      conic-gradient(#3a3a3a 25%, #2a2a2a 0 50%, #3a3a3a 0 75%, #2a2a2a 0) 0 0/40px 40px;}
+  #stage.bg-green{background:var(--green)}
+  #stage.bg-black{background:var(--black)}
+  /* in clean export mode we hide the checkerboard so capture is truly transparent */
+  #stage.export.bg-alpha{background:transparent}
+
+  .clip{position:absolute;inset:0;display:none;align-items:center;justify-content:center}
+  .clip.show{display:flex}
+
+  /* grain (only on full-frame clips that want it) */
+  .grain::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  /* ---------- shared marker drawing ---------- */
+  .mk{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+  .draw{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:3000;stroke-dashoffset:3000;
+    animation:draw 1s ease forwards}
+  .circle{stroke:var(--ember);stroke-width:13;filter:url(#rough)}
+  .circle2{stroke:var(--ember);stroke-width:8;opacity:.7;filter:url(#rough);animation-delay:.16s}
+  .strike{stroke:var(--noise);stroke-width:15;filter:url(#rough);animation:draw .5s ease forwards}
+  .under{stroke:var(--ember);stroke-width:15;filter:url(#rough)}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .scrawl{position:absolute;font-family:'Permanent Marker',cursive;color:var(--ember);
+    opacity:0;animation:pop .25s ease .55s forwards}
+  @keyframes pop{from{opacity:0;transform:scale(.7) rotate(-8deg)}to{opacity:1;transform:scale(1) rotate(-8deg)}}
+
+  /* ---------- doc plate for the Mark demo ---------- */
+  .doc{position:absolute;left:120px;right:120px;top:560px;height:800px;background:var(--paper);border-radius:8px;
+    box-shadow:0 40px 80px rgba(0,0,0,.5);transform:rotate(-1deg);padding:70px}
+  .doc .t{font-family:'JetBrains Mono',monospace;font-size:26px;color:#7a746a;letter-spacing:.1em;border-bottom:2px solid #cabfaa;padding-bottom:18px}
+  .doc .ln{height:18px;background:#d8cfbd;border-radius:4px;margin:26px 0}
+  .doc .hot{font-family:'JetBrains Mono',monospace;font-size:30px;font-weight:700;color:#1c1a17;margin:34px 0}
+
+  /* ---------- verdict card ---------- */
+  .verdict{width:840px;display:flex;flex-direction:column;gap:120px;align-items:flex-start}
+  .vrow{position:relative;font-weight:900;line-height:.95}
+  .vrow.noise{color:var(--noise);font-size:120px}
+  .vrow.mat{color:var(--white);font-size:140px}
+  .vstamp{position:absolute;font-family:'Permanent Marker',cursive;font-size:64px;transform:rotate(-9deg)}
+  .vstamp.n{color:var(--noise);right:-40px;top:-50px}
+  .vstamp.m{color:var(--ember);right:-70px;top:-60px}
+
+  /* ---------- constraint card (white on ember) ---------- */
+  .cc{width:1080px;height:1920px;background:var(--ember);display:flex;align-items:center;justify-content:center;padding:0 140px}
+  .cc p{color:var(--white);font-weight:900;font-size:118px;line-height:1.04;letter-spacing:-.01em}
+
+  /* ---------- wordmark ---------- */
+  .wm{position:relative;text-align:center}
+  .wm .w{font-weight:900;font-size:150px;letter-spacing:-.01em;color:var(--white)}
+  .wm .w .ity{color:var(--ember)}
+  .wm .sub{font-family:'JetBrains Mono',monospace;font-size:26px;letter-spacing:.24em;color:#8a847a;text-transform:uppercase;margin-top:40px}
+
+  /* ---------- stamp ---------- */
+  .stamp{font-family:'Permanent Marker',cursive;color:var(--ember);font-size:120px;letter-spacing:.02em;
+    border:10px solid var(--ember);padding:30px 60px;transform:rotate(-7deg);opacity:0;
+    animation:thud .3s cubic-bezier(.2,1.5,.4,1) forwards}
+  @keyframes thud{from{opacity:0;transform:rotate(-7deg) scale(1.6)}to{opacity:1;transform:rotate(-7deg) scale(1)}}
+
+  /* ---------- caption sample ---------- */
+  .cap{position:absolute;bottom:520px;left:0;right:0;text-align:center}
+  .cap .word{display:inline-block;font-weight:900;font-size:96px;color:var(--white);opacity:0;
+    text-shadow:0 6px 30px rgba(0,0,0,.6);animation:wpop .25s ease forwards}
+  .cap .word.ember{color:var(--ember);position:relative}
+  .cap .word.ember::after{content:"";position:absolute;left:4%;right:4%;bottom:-6px;height:10px;background:var(--ember);
+    border-radius:6px;filter:url(#rough)}
+  @keyframes wpop{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+<svg width="0" height="0"><defs>
+  <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="14"/></filter>
+</defs></svg>
+
+<div class="bar">
+  <b>Materiality overlays</b>
+  <button data-clip="mark" class="on">The Mark</button>
+  <button data-clip="verdict">Verdict</button>
+  <button data-clip="constraint">Constraint card</button>
+  <button data-clip="wordmark">Wordmark</button>
+  <button data-clip="stamp">Stamp</button>
+  <button data-clip="caption">Captions</button>
+  <span class="sep"></span>
+  <span style="color:#888">BG:</span>
+  <button data-bg="green" class="on">green</button>
+  <button data-bg="alpha">alpha</button>
+  <button data-bg="black">black</button>
+  <span class="sep"></span>
+  <button id="replay">↻ replay</button>
+  <button id="exportmode">clean export</button>
+  <span style="color:#666;margin-left:auto">stage = 1080×1920 · scaled for preview</span>
+</div>
+
+<div class="viewport">
+  <div id="stage" class="bg-green">
+
+    <!-- THE MARK (circle + strike + scrawl over a document plate) -->
+    <div class="clip show grain" data-clip="mark">
+      <div class="doc">
+        <div class="t">FORM 10-K · NVIDIA CORP · ITEM 7</div>
+        <div class="ln" style="width:96%"></div>
+        <div class="hot">data-center revenue, up 217% YoY</div>
+        <div class="ln" style="width:90%"></div>
+        <div class="hot">guidance: in line with consensus</div>
+        <div class="ln" style="width:80%"></div>
+      </div>
+      <svg class="mk" viewBox="0 0 1080 1920" preserveAspectRatio="none">
+        <path class="draw circle"  d="M150 770 C 100 745 95 835 200 855 C 470 895 760 875 760 815 C 760 755 470 745 230 765 C 150 775 150 820 215 835"/>
+        <path class="draw circle2" d="M165 778 C 130 768 128 828 220 845"/>
+        <line class="draw strike" x1="135" y1="1020" x2="760" y2="1032"/>
+      </svg>
+      <span class="scrawl" style="left:780px;top:740px;font-size:54px">the tell</span>
+      <span class="scrawl" style="left:560px;top:990px;font-size:46px;color:var(--noise)">priced in</span>
+    </div>
+
+    <!-- VERDICT -->
+    <div class="clip" data-clip="verdict">
+      <div class="verdict">
+        <div class="vrow noise">MODEL<br>BENCHMARKS<span class="vstamp n">noise</span>
+          <svg class="mk" style="position:absolute;inset:0" viewBox="0 0 840 360" preserveAspectRatio="none">
+            <line class="draw strike" x1="10" y1="150" x2="720" y2="172"/>
+          </svg>
+        </div>
+        <div class="vrow mat">GRID &amp;<br>POWER<span class="vstamp m">material</span>
+          <svg class="mk" style="position:absolute;inset:-40px -30px" viewBox="0 0 900 420" preserveAspectRatio="none">
+            <path class="draw circle" d="M70 230 C 20 205 20 340 200 372 C 640 420 880 350 872 270 C 864 190 430 165 170 195 C 70 207 64 285 150 312"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONSTRAINT CARD -->
+    <div class="clip" data-clip="constraint">
+      <div class="cc"><p>The bottleneck on AI isn't intelligence. It's electricity.</p></div>
+    </div>
+
+    <!-- WORDMARK -->
+    <div class="clip" data-clip="wordmark">
+      <div class="wm">
+        <div class="w">MATERIAL<span class="ity">ITY</span></div>
+        <svg class="mk" style="position:absolute;left:0;right:0;top:62%;height:120px" viewBox="0 0 1080 120" preserveAspectRatio="none">
+          <path class="draw under" d="M250 60 C 430 34 700 34 830 56"/>
+        </svg>
+        <div class="sub">an Atelier Superintelligence briefing</div>
+      </div>
+    </div>
+
+    <!-- STAMP -->
+    <div class="clip" data-clip="stamp">
+      <div class="stamp">THAT'S WHAT'S MATERIAL.</div>
+    </div>
+
+    <!-- CAPTIONS -->
+    <div class="clip grain bg" data-clip="caption">
+      <div class="cap">
+        <span class="word" style="animation-delay:0s">you</span>
+        <span class="word" style="animation-delay:.12s">can't</span>
+        <span class="word ember" style="animation-delay:.26s">PROMPT</span>
+        <span class="word" style="animation-delay:.40s">a substation</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const stage = document.getElementById('stage');
+  function restart(el){ el.querySelectorAll('.draw,.scrawl,.word,.stamp').forEach(n=>{
+    n.style.animation='none'; void n.offsetWidth; n.style.animation=''; }); }
+  document.querySelectorAll('[data-clip]').forEach(b=>{
+    if(b.tagName!=='BUTTON') return;
+    b.onclick=()=>{
+      document.querySelectorAll('.bar [data-clip]').forEach(x=>x.classList.remove('on'));
+      b.classList.add('on');
+      document.querySelectorAll('#stage .clip').forEach(c=>c.classList.remove('show'));
+      const c=document.querySelector('#stage .clip[data-clip="'+b.dataset.clip+'"]');
+      c.classList.add('show'); restart(c);
+    };
+  });
+  document.querySelectorAll('[data-bg]').forEach(b=>{
+    b.onclick=()=>{
+      document.querySelectorAll('.bar [data-bg]').forEach(x=>x.classList.remove('on'));
+      b.classList.add('on');
+      stage.classList.remove('bg-green','bg-alpha','bg-black');
+      stage.classList.add('bg-'+b.dataset.bg);
+    };
+  });
+  document.getElementById('replay').onclick=()=>restart(document.querySelector('#stage .clip.show'));
+  document.getElementById('exportmode').onclick=(e)=>{
+    stage.classList.toggle('export'); e.target.classList.toggle('on');
+    // fit 1080x1920 to the window for clean full-res capture when exporting
+    if(stage.classList.contains('export')){
+      const s=Math.min(window.innerWidth/1080,(window.innerHeight-54)/1920);
+      stage.style.transform='scale('+s+')';
+    } else { stage.style.transform='scale(.42)'; }
+  };
+</script>
+</body>
+</html>

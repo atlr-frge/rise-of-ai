@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="600" viewBox="0 0 1080 600">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&amp;display=swap');
+      .s{font-family:'Permanent Marker',cursive;font-size:96px;fill:#E85D04}</style>
+  </defs>
+  <g transform="rotate(-7 540 300)">
+    <rect x="120" y="190" width="840" height="220" rx="10" fill="none" stroke="#E85D04" stroke-width="10"/>
+    <text x="540" y="330" text-anchor="middle" class="s">THAT'S WHAT'S</text>
+    <text x="540" y="390" text-anchor="middle" class="s" font-size="64">MATERIAL.</text>
+  </g>
+</svg>

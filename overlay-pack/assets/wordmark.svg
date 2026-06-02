@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="14"/></filter>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&amp;family=JetBrains+Mono&amp;display=swap');
+      .w{font-family:'Inter',sans-serif;font-weight:900;font-size:150px;letter-spacing:-1.5px}
+      .sub{font-family:'JetBrains Mono',monospace;font-size:26px;letter-spacing:6px;fill:#8a847a}
+    </style>
+  </defs>
+  <!-- transparent background by design -->
+  <text x="540" y="940" text-anchor="middle" class="w">
+    <tspan fill="#FAFAFA">MATERIAL</tspan><tspan fill="#E85D04">ITY</tspan>
+  </text>
+  <path d="M250 1000 C 430 974 700 974 830 996" fill="none" stroke="#E85D04" stroke-width="15"
+        stroke-linecap="round" filter="url(#rough)"/>
+  <text x="540" y="1075" text-anchor="middle" class="sub">AN ATELIER SUPERINTELLIGENCE BRIEFING</text>
+</svg>
