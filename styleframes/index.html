@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Materiality — Style Frames</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=JetBrains+Mono:wght@400;700&family=Caveat:wght@600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ember:#E85D04;      /* the Circle — material */
+    --glow:#F48C06;       /* accent */
+    --black:#0A0A0A;      /* the void */
+    --white:#FAFAFA;      /* set type */
+    --paper:#F1EBDD;      /* document surface */
+    --noise:#6B6B6B;      /* the Strike — noise/beta */
+    --ink:#1c1a17;        /* printed text on paper */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:#070707;
+    color:var(--white);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    padding:48px 24px 80px;
+  }
+  /* subtle film grain over everything */
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:999;
+    opacity:.04;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .head{max-width:1180px;margin:0 auto 14px}
+  .kicker{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--ember);opacity:.9}
+  h1{font-size:40px;font-weight:900;letter-spacing:-.02em;margin:8px 0 6px}
+  h1 .ity{color:var(--ember)}
+  .sub{color:#9a958c;font-size:15px;max-width:680px;line-height:1.5}
+  .legend{max-width:1180px;margin:26px auto 8px;display:flex;flex-wrap:wrap;gap:26px;padding:18px 20px;border:1px solid #1e1c19;border-radius:12px;background:#0d0c0b}
+  .legend .item{display:flex;align-items:center;gap:10px;font-size:13px;color:#cfcabf}
+  .swatch{width:16px;height:16px;border-radius:4px;border:1px solid #2a2824}
+  .legend b{color:var(--white)}
+  .grid{max-width:1180px;margin:34px auto 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:34px}
+  .frameWrap{display:flex;flex-direction:column;gap:14px}
+  /* 9:16 phone frame */
+  .frame{
+    position:relative;aspect-ratio:9/16;border-radius:22px;overflow:hidden;
+    background:var(--black);box-shadow:0 22px 60px rgba(0,0,0,.6),0 0 0 1px #1c1a17;
+  }
+  .paper-tex{position:absolute;inset:0;opacity:.5;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E")}
+  .cap{font-size:13px;line-height:1.5;color:#a8a39a}
+  .cap b{color:var(--white);font-weight:700}
+  .tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ember);border:1px solid #2a2824;border-radius:5px;padding:2px 7px;margin-bottom:6px}
+
+  /* ---------- FRAME 1: marked-up filing ---------- */
+  .f-doc{position:absolute;inset:9% 8%;background:var(--paper);border-radius:3px;
+    box-shadow:0 18px 40px rgba(0,0,0,.55);transform:rotate(-1.1deg);padding:9% 8%;color:var(--ink)}
+  .f-doc .docttl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:#7a746a;border-bottom:1px solid #c9c1b0;padding-bottom:7px;margin-bottom:12px}
+  .f-doc .line{height:7px;background:#d6cdbb;border-radius:2px;margin:9px 0}
+  .f-doc .line.s{width:72%}.f-doc .line.m{width:88%}.f-doc .line.l{width:96%}
+  .f-doc .hot{position:relative;height:11px;margin:14px 0;display:flex;align-items:center}
+  .f-doc .hotxt{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--ink)}
+  .scrawl{position:absolute;font-family:'Permanent Marker',cursive;color:var(--ember);font-size:15px;transform:rotate(-7deg)}
+
+  /* ---------- FRAME 2: b-roll through the desk ---------- */
+  .f-broll{position:absolute;inset:0;
+    background:
+      radial-gradient(120% 80% at 50% 18%, #243140 0%, #141a22 45%, #0a0d11 100%);
+  }
+  .pylon{position:absolute;bottom:34%;width:2px;background:#46566a;transform-origin:bottom}
+  .horizon{position:absolute;left:0;right:0;bottom:34%;height:1px;background:#3a4656;opacity:.6}
+  .glowdot{position:absolute;width:5px;height:5px;border-radius:50%;background:var(--glow);box-shadow:0 0 10px 2px rgba(244,140,6,.7)}
+  .deskedge{position:absolute;left:0;right:0;bottom:0;height:24%;background:linear-gradient(180deg,rgba(241,235,221,0) 0%, var(--paper) 38%);}
+  .deskedge .et{position:absolute;bottom:9%;left:9%;font-family:'JetBrains Mono',monospace;font-size:10px;color:#6f695d;letter-spacing:.1em}
+
+  /* ---------- FRAME 3: the call / verdict ---------- */
+  .f-call{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:34px;padding:0 12%}
+  .verdict{position:relative;font-weight:900;letter-spacing:-.01em;line-height:1}
+  .verdict.noise{color:var(--noise);font-size:26px}
+  .verdict.mat{color:var(--white);font-size:30px}
+  .stamp{position:absolute;right:-2%;font-family:'Permanent Marker',cursive;font-size:16px;letter-spacing:.04em;transform:rotate(-9deg)}
+  .stamp.n{color:var(--noise);top:-14px}
+  .stamp.m{color:var(--ember);top:-16px}
+
+  /* ---------- FRAME 4: wordmark ---------- */
+  .f-mark{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+  .wm{font-weight:900;font-size:30px;letter-spacing:-.01em;position:relative}
+  .wm .ity{color:var(--ember)}
+  .wm-sub{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;color:#6f695d;text-transform:uppercase;margin-top:14px}
+
+  /* ---------- shared SVG marker overlay ---------- */
+  .mk{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+  .draw{fill:none;stroke-linecap:round;stroke-linejoin:round;
+    stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 1s ease forwards;}
+  .draw.circle{stroke:var(--ember);stroke-width:4.5;filter:url(#rough)}
+  .draw.circle2{stroke:var(--ember);stroke-width:3;opacity:.7;filter:url(#rough);animation-delay:.15s}
+  .draw.strike{stroke:var(--noise);stroke-width:5;filter:url(#rough);animation:draw .5s ease forwards}
+  .draw.under{stroke:var(--ember);stroke-width:5;filter:url(#rough)}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .squeak{position:absolute;top:10px;right:12px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ember);opacity:0;animation:sq 1s ease forwards}
+  @keyframes sq{20%{opacity:0}40%{opacity:.9}100%{opacity:.25}}
+  .foot{max-width:1180px;margin:54px auto 0;color:#6f695d;font-size:12px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0"><defs>
+  <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="6"/></filter>
+</defs></svg>
+
+<div class="head">
+  <div class="kicker">Materiality · Style Frames · v1</div>
+  <h1>The look in four frames<span class="ity">.</span></h1>
+  <p class="sub">The signature is a hand drawing a mark. Ember circles what's <b style="color:var(--ember)">material</b>; grey strikes the <b style="color:var(--noise)">noise</b>. Every frame is rendered to the exact brand tokens, so the edit bay can lift the stroke, the type, and the color directly. Reload to watch the marks draw on.</p>
+</div>
+
+<div class="legend">
+  <div class="item"><span class="swatch" style="background:var(--ember)"></span><b>The Circle</b> · ember · material</div>
+  <div class="item"><span class="swatch" style="background:var(--noise)"></span><b>The Strike</b> · grey · noise / beta</div>
+  <div class="item"><span class="swatch" style="background:var(--paper)"></span>Paper · the document surface</div>
+  <div class="item" style="font-family:'Permanent Marker',cursive;color:var(--ember)">the tell — THE MARK (human)</div>
+  <div class="item" style="font-family:'JetBrains Mono',monospace;color:#cfcabf">FERC&nbsp;Q2'26 — THE TAG (data)</div>
+  <div class="item" style="font-weight:800">Aa — SET TYPE (the world)</div>
+</div>
+
+<div class="grid">
+
+  <!-- FRAME 1 -->
+  <div class="frameWrap">
+    <div class="frame">
+      <div class="f-doc">
+        <div class="docttl">FORM 10-K · NVIDIA CORP · ITEM 7</div>
+        <div class="line l"></div><div class="line m"></div>
+        <div class="hot"><span class="hotxt">data-center revenue, up 217% YoY</span></div>
+        <div class="line l"></div>
+        <div class="hot"><span class="hotxt">guidance: in line with consensus</span></div>
+        <div class="line s"></div><div class="line m"></div><div class="line l"></div>
+        <span class="scrawl" style="left:60%;top:30%">the tell</span>
+        <span class="scrawl" style="left:54%;top:51%;color:var(--noise);transform:rotate(4deg);font-size:13px">priced in</span>
+      </div>
+      <svg class="mk" viewBox="0 0 360 640" preserveAspectRatio="none">
+        <path class="draw circle"  d="M48 232 C 30 224 28 250 60 256 C 150 270 250 262 250 244 C 250 226 150 222 70 228 C 44 230 44 244 64 248"/>
+        <path class="draw circle2" d="M52 234 C 40 230 40 248 70 252 C 150 262 240 256 244 244"/>
+        <line class="draw strike" x1="40" y1="330" x2="250" y2="334"/>
+      </svg>
+      <div class="paper-tex"></div>
+      <div class="squeak">♪ squeak</div>
+    </div>
+    <div class="cap"><span class="tag">THE MARK · signature</span><br><b>Marked-up filing.</b> A real document, one ember Circle on the material line, one grey Strike on the consensus noise. The show literally does what its name means.</div>
+  </div>
+
+  <!-- FRAME 2 -->
+  <div class="frameWrap">
+    <div class="frame">
+      <div class="f-broll">
+        <div class="horizon"></div>
+        <div class="pylon" style="left:24%;height:120px"></div>
+        <div class="pylon" style="left:52%;height:165px"></div>
+        <div class="pylon" style="left:78%;height:130px"></div>
+        <div class="glowdot" style="left:52%;bottom:48%"></div>
+        <div class="glowdot" style="left:24%;bottom:42%"></div>
+        <div class="deskedge"><span class="et">FERC · interconnection queue · Q2'26</span></div>
+      </div>
+      <svg class="mk" viewBox="0 0 360 640" preserveAspectRatio="none">
+        <path class="draw circle" d="M150 250 C 120 240 116 286 168 296 C 250 312 300 296 296 270 C 292 244 200 238 156 246"/>
+        <path class="draw circle2" d="M152 252 C 132 248 130 284 172 292"/>
+      </svg>
+      <span class="scrawl" style="left:62%;top:30%;font-family:'Permanent Marker',cursive;color:var(--ember);font-size:16px;transform:rotate(-6deg)">years</span>
+      <div class="squeak">♪ squeak</div>
+    </div>
+    <div class="cap"><span class="tag">B-ROLL · through the desk</span><br><b>The world, reviewed.</b> Footage is desaturated and seen over the page edge. Ember enters only as the Mark, so it pops the instant judgment lands.</div>
+  </div>
+
+  <!-- FRAME 3 -->
+  <div class="frameWrap">
+    <div class="frame">
+      <div class="f-call">
+        <div class="verdict noise">MODEL<br>BENCHMARKS
+          <span class="stamp n">noise</span>
+          <svg class="mk" style="position:absolute;inset:0" viewBox="0 0 300 120" preserveAspectRatio="none">
+            <line class="draw strike" x1="6" y1="48" x2="250" y2="56"/>
+          </svg>
+        </div>
+        <div class="verdict mat">GRID &amp;<br>POWER
+          <span class="stamp m">material</span>
+          <svg class="mk" style="position:absolute;inset:-18px -10px" viewBox="0 0 320 150" preserveAspectRatio="none">
+            <path class="draw circle" d="M30 78 C 8 70 8 116 70 126 C 220 142 300 120 296 92 C 292 64 150 56 60 66 C 26 70 24 96 52 104"/>
+          </svg>
+        </div>
+      </div>
+      <div class="paper-tex"></div>
+    </div>
+    <div class="cap"><span class="tag">THE CALL · verdict</span><br><b>One sentence, two marks.</b> Strike the consensus, circle the material. The grammar of the whole brand in a single frame.</div>
+  </div>
+
+  <!-- FRAME 4 -->
+  <div class="frameWrap">
+    <div class="frame">
+      <div class="f-mark">
+        <div class="wm">MATERIAL<span class="ity">ITY</span></div>
+        <svg class="mk" style="position:absolute;left:0;right:0;top:54%;height:60px" viewBox="0 0 360 60" preserveAspectRatio="none">
+          <path class="draw under" d="M86 28 C 140 18 230 18 274 26"/>
+        </svg>
+        <div class="wm-sub">an Atelier Superintelligence briefing</div>
+      </div>
+      <div class="paper-tex"></div>
+      <div class="squeak">♪ squeak</div>
+    </div>
+    <div class="cap"><span class="tag">WORDMARK · the turn</span><br><b>MATERIAL in the neutral, ITY in the fire.</b> The hand-finished ember underline is the audio-logo squeak made visible. Lands only after the cold open earns it.</div>
+  </div>
+
+</div>
+
+<div class="foot">materiality · the machine surfaces everything. almost none of it is material. — companion to MATERIALITY-PRODUCTION-SYSTEM.md</div>
+</body>
+</html>
