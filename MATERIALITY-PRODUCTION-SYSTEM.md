@@ -210,6 +210,27 @@ ASSET CHECK
 
 ---
 
+## 8b. The reference, verified — what @emilyissocial actually does
+
+*From transcript + frame analysis of `Emily-Higgins.mov` (9:16, 2:41), 2026-06-02. This is
+the real thing we're matching, not a guess.*
+
+- **Talking head:** warm natural light, **a podcast mic in the frame**, animated hands,
+  direct to lens, intimate — like she's telling you one thing across a table. Match this for
+  Michael's cold-open/sign-off. *Not* a news desk; mic-in-frame is part of the warmth.
+- **Handcrafted b-roll, shot top-down:** a hand **draws a diagram live** in a notebook (she
+  builds a pyramid), adding **physical sticky-note labels** one at a time. Also tactile paper
+  craft (a DNA helix made of sticky notes) and **real-prop metaphors** on the desk (an owl
+  figurine + a neon sign). The hand + paper + physical objects *is* her signature.
+- **Captions:** word-by-word, centered, white, heavy, with a small play-triangle motif.
+- **Two formats:** (1) the **ladder/taxonomy** ("5 stages…") → our series trailer; (2) the
+  **single-story curiosity piece** (the owl study) → our individual episodes.
+
+**Our adaptation:** keep her top-down tactile world and her warmth. Our version of "the hand
+drawing on paper" is **The Mark** — the ember marker on a real filing. Where she labels a
+pyramid with sticky notes, we **mark up documents and build the five-force pyramid for real
+on the desk.** Same craft, our securities meaning.
+
 ## 9. B-roll rules — making it look handcrafted, not stock
 
 The b-roll is where "recognizable as our brand throughout" is won or lost. Rules:
