@@ -23,13 +23,21 @@ one-time setup that's reused every episode. Created 2026-06-02.*
 
 ## A. Accounts & tools that must be live
 
-1. **HeyGen** - tier that unlocks **Avatar IV/V + Custom Motion + Gesture Control + Instant
-   Highlights**. ⚠️ Per the handoff you're on API V2: **rotate the leaked V2 key, upgrade to
-   Team tier, move to V3.**
-2. **ElevenLabs Pro** - Michael voice clone ✅ (already built). Use **Projects** for SSML pauses.
-3. **Seedance 2.0** for b-roll - via **fal.ai** ⚠️ (balance currently exhausted - top up) **or**
-   via **CapCut / Dreamina** subscription (Seedance is built into CapCut now).
-4. **CapCut or After Effects** - assembly + the composited brand layer.
+> **Pipeline collapsed (confirmed 2026-06-02):** HeyGen integrated **Seedance 2.0** on
+> 2026-04-07. Avatar + gestures + **b-roll** + voice + lip-sync now all happen **inside
+> HeyGen** - no separate fal.ai/Seedance step. The only thing outside HeyGen is your custom
+> brand-overlay pack (§B), dropped on top in-editor or in a quick CapCut pass.
+
+1. **HeyGen** (the core of the whole pipeline) - tier that unlocks **Avatar V + Custom Motion
+   + Gesture Control + the Seedance 2.0 integration (AI Video Generator / Avatar Shots) +
+   Instant Highlights**. ⚠️ Per the handoff you're on API V2: **rotate the leaked V2 key,
+   upgrade tier, move to V3.** Confirm the Seedance integration is on your plan.
+2. **ElevenLabs** - Michael voice clone ✅ (already built); it's integrated into HeyGen, or
+   export per-section with SSML `<break>` pauses.
+3. **CapCut or After Effects** - only for the final brand-overlay pass *if* you don't import
+   the overlays into HeyGen directly. Optional.
+4. **fal.ai / CapCut Seedance** - now just a fallback if you want a look HeyGen's integration
+   doesn't cover. Not required.
 5. **Fonts installed/licensed:** Inter (set type), JetBrains Mono (data tags), a marker
    handwriting face (the Mark + scrawls, e.g. Permanent Marker / Caveat).
 
@@ -83,9 +91,12 @@ tactile feel. That combination is what makes AI production still read as handcra
 ---
 
 ## Blockers to clear first (in order)
-1. **HeyGen:** rotate the leaked V2 key → upgrade tier → do the Avatar V capture.
-2. **Seedance:** top up fal.ai balance (or use CapCut's built-in Seedance) - currently exhausted.
-3. **Build the brand template pack (§B) once.**
+1. **HeyGen:** rotate the leaked V2 key → upgrade tier (with the Seedance 2.0 integration) →
+   do the Avatar V capture.
+2. **Build the brand-overlay pack (§B) once** - the only piece that isn't generated in HeyGen.
 
-Once those exist, producing any episode = **render voice → render avatar → generate ~6 plates
-→ composite the brand layer → caption → export.** Roughly half a day per episode after setup.
+*(The old fal.ai/Seedance balance blocker is gone - b-roll now generates inside HeyGen.)*
+
+Once those exist, producing any episode = **prompt the avatar + gestures → generate the
+Seedance b-roll (same place) → render voice → drop the brand-overlay pack → caption → export.**
+Roughly half a day per episode after setup, mostly in one tool.
