@@ -166,6 +166,13 @@ Sound is half the recognition and the cheapest half to keep consistent.
 Every episode, same skeleton. This is what makes #1 and #5 feel like the same show.
 Target length **60–90s** (Emily's energy, "a little more length," still social-native 9:16).
 
+> **Production mode (decided 2026-06-02):** avatar-led. Talking-head = **HeyGen avatar**
+> (short, tightly-framed, quick-cut); b-roll = **AI-generated (Seedance)** in a brand-locked
+> style; the **handcraft lives in the composited Mark layer**, not in anything shot. Full
+> spec in [MATERIALITY-AI-PRODUCTION.md](MATERIALITY-AI-PRODUCTION.md). The "real Michael"
+> cold-open is now optional (recommended only for Ep 5); transparency ("The Stack") is what
+> earns the right to use an avatar.
+
 | Beat | Time | Format | Job |
 |---|---|---|---|
 | **1. The Cold Open** | 0:00–0:08 | Michael, handheld, direct to lens. **No logo.** | One blunt material claim that stops the scroll. Start mid-thought. |
