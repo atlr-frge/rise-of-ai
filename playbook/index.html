@@ -3,9 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Materiality — Production Playbook</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Materiality — Production Playbook (Source of Truth)</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--ember:#E85D04;--glow:#F48C06;--black:#0A0A0A;--white:#FAFAFA;--paper:#F1EBDD;--noise:#6B6B6B;--line:#222024;}
@@ -18,148 +16,203 @@
   .kick{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--ember)}
   h2{font-size:30px;font-weight:900;letter-spacing:-.02em;margin:0 0 6px}
   h2 .n{color:var(--ember);font-family:'JetBrains Mono',monospace;font-size:18px;margin-right:12px;font-weight:700}
-  section{padding:60px 0;border-top:1px solid var(--line)}
+  section{padding:56px 0;border-top:1px solid var(--line)}
   p{color:#bdb9b2;font-size:16px}
   .lead{font-size:19px;color:#d8d4cd}
   a{color:var(--glow)}
-  .hero{padding:80px 0 56px}
-  .wm{font-weight:900;font-size:64px;letter-spacing:-.03em;line-height:1}
-  .wm .ity{color:var(--ember)}
-  .hero h1{font-size:34px;font-weight:800;letter-spacing:-.02em;margin:22px 0 10px;max-width:780px;color:var(--white)}
-  .hero .sub{font-size:18px;color:#a8a39a;max-width:700px}
-  .hero .meta{margin-top:26px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--noise);letter-spacing:.04em}
-  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:5px 13px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ember);margin-bottom:22px}
+  .banner{background:#15120f;border:1px solid #2a201a;border-radius:10px;padding:13px 20px;margin:24px 0 0;font-family:'JetBrains Mono',monospace;font-size:12px;color:#cfcabf;letter-spacing:.04em}
+  .banner b{color:var(--ember)}
+  .hero{padding:40px 0 50px}
+  .wm{font-weight:900;font-size:64px;letter-spacing:-.03em;line-height:1}.wm .ity{color:var(--ember)}
+  .hero h1{font-size:33px;font-weight:800;letter-spacing:-.02em;margin:22px 0 10px;max-width:790px;color:var(--white)}
+  .hero .sub{font-size:18px;color:#a8a39a;max-width:710px}
+  .hero .meta{margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--noise)}
+  .toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+  .toc a{font-family:'JetBrains Mono',monospace;font-size:11px;color:#bdb9b2;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+  .toc a:hover{border-color:var(--ember);color:var(--ember)}
   .callout{background:linear-gradient(135deg,#17120d,#100d0a);border:1px solid #2a201a;border-left:3px solid var(--ember);border-radius:14px;padding:30px 32px;margin:8px 0}
-  .callout .q{font-size:22px;font-weight:800;color:var(--white);letter-spacing:-.01em}
-  .callout .a{margin-top:12px;color:#c9c4bc;font-size:16px}
-  .callout em{color:var(--glow);font-style:normal}
-  .grid{display:grid;gap:16px;margin-top:26px}
-  .g3{grid-template-columns:repeat(3,1fr)}
+  .callout .q{font-size:22px;font-weight:800;color:var(--white)}.callout .a{margin-top:12px;color:#c9c4bc;font-size:16px}.callout em{color:var(--glow);font-style:normal}
+  .grid{display:grid;gap:16px;margin-top:26px}.g3{grid-template-columns:repeat(3,1fr)}
   .card{background:#111013;border:1px solid var(--line);border-radius:12px;padding:20px}
   .card h3{font-size:16px;font-weight:800;color:var(--white);margin-bottom:4px}
   .card .role{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ember);letter-spacing:.08em;text-transform:uppercase}
   .card p{font-size:14px;margin-top:8px}
-  .flow{display:flex;flex-direction:column;gap:0;margin-top:26px;counter-reset:step}
-  .step{display:grid;grid-template-columns:54px 1fr;gap:18px;padding:16px 0;border-bottom:1px dashed #1c1a1e}
-  .step:last-child{border-bottom:0}
-  .step .num{counter-increment:step;width:44px;height:44px;border-radius:11px;background:#15120f;border:1px solid #2a201a;color:var(--ember);font-family:'JetBrains Mono',monospace;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:18px}
-  .step .num::before{content:counter(step)}
-  .step h3{font-size:17px;font-weight:800;color:var(--white);margin-bottom:3px}
-  .step p{font-size:14.5px}
-  .step .tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--noise)}
+  ul.clean{list-style:none;margin-top:14px}ul.clean li{padding:9px 0;border-bottom:1px solid #161418;font-size:15px;color:#c2bdb5}ul.clean li b{color:var(--white)}ul.clean li:last-child{border:0}ul.clean em{color:var(--glow);font-style:normal}
+  .flow{display:flex;flex-direction:column;margin-top:26px;counter-reset:step}
+  .step{display:grid;grid-template-columns:54px 1fr;gap:18px;padding:16px 0;border-bottom:1px dashed #1c1a1e}.step:last-child{border-bottom:0}
+  .step .num{counter-increment:step;width:44px;height:44px;border-radius:11px;background:#15120f;border:1px solid #2a201a;color:var(--ember);font-family:'JetBrains Mono',monospace;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:18px}.step .num::before{content:counter(step)}
+  .step h3{font-size:17px;font-weight:800;color:var(--white);margin-bottom:3px}.step p{font-size:14.5px}.step .tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--noise)}
   .tech{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:24px}
-  .tech .row{display:grid;grid-template-columns:210px 1fr;border-bottom:1px solid var(--line)}
-  .tech .row:last-child{border-bottom:0}
+  .tech .row{display:grid;grid-template-columns:210px 1fr;border-bottom:1px solid var(--line)}.tech .row:last-child{border-bottom:0}
   .tech .k{background:#100f12;padding:18px 20px;font-weight:800;color:var(--white);font-size:15px;border-right:1px solid var(--line)}
-  .tech .v{padding:18px 20px;font-size:14.5px;color:#bdb9b2}
-  .tech .v code{font-family:'JetBrains Mono',monospace;color:var(--glow);background:#1a1510;padding:2px 7px;border-radius:5px;font-size:13px}
+  .tech .v{padding:18px 20px;font-size:14.5px;color:#bdb9b2}.tech .v code{font-family:'JetBrains Mono',monospace;color:var(--glow);background:#1a1510;padding:2px 7px;border-radius:5px;font-size:13px}
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}.ba .col{border:1px solid var(--line);border-radius:12px;padding:22px}
+  .ba .was{background:#0f0e10}.ba .now{background:linear-gradient(135deg,#17120d,#100d0a);border-color:#2a201a}
+  .ba h4{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}.ba .was h4{color:var(--noise)}.ba .now h4{color:var(--ember)}
+  .ba ul{list-style:none}.ba li{padding:6px 0;font-size:14.5px;color:#c2bdb5;border-bottom:1px solid #161418}.ba li:last-child{border:0}.ba .was li{color:#8d8880;text-decoration:line-through;text-decoration-color:#444}
   table{width:100%;border-collapse:collapse;margin-top:22px;font-size:14px}
   th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line)}
   th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ember)}
-  td code{font-family:'JetBrains Mono',monospace;color:var(--glow);font-size:12.5px}
-  td.force{font-weight:800;color:var(--white)}
-  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:22px}
-  .twocol h3{font-size:14px;font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--ember);margin-bottom:10px}
-  .twocol p{font-size:14.5px}.twocol b{color:#e0dcd4}
-  .next{background:#100f12;border:1px solid var(--line);border-radius:12px;padding:8px 24px;margin-top:22px}
-  .next .item{padding:16px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:34px 1fr;gap:8px}
-  .next .item:last-child{border:0}
-  .next .n{color:var(--ember);font-family:'JetBrains Mono',monospace;font-weight:700}
-  .next b{color:var(--white)}.next p{font-size:14px;margin-top:3px}
-  footer{padding:50px 0 70px;border-top:1px solid var(--line);color:var(--noise);font-family:'JetBrains Mono',monospace;font-size:12px}
-  footer .big{color:#bdb9b2;font-size:13px}
+  td code{font-family:'JetBrains Mono',monospace;color:var(--glow);font-size:12.5px}td.force{font-weight:800;color:var(--white)}
+  .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+  .shots figure{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#0f0e10}.shots img{width:100%;display:block}
+  .shots figcaption{padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--noise)}.shots b{color:var(--ember)}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:22px}.twocol h3{font-size:14px;font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--ember);margin-bottom:10px}.twocol p{font-size:14.5px}.twocol b{color:#e0dcd4}
+  .next{background:#100f12;border:1px solid var(--line);border-radius:12px;padding:8px 24px;margin-top:22px}.next .item{padding:16px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:34px 1fr;gap:8px}.next .item:last-child{border:0}.next .nn{color:var(--ember);font-family:'JetBrains Mono',monospace;font-weight:700}.next b{color:var(--white)}.next p{font-size:14px;margin-top:3px}
+  details.tx{margin-top:18px;border:1px solid var(--line);border-radius:12px;background:#0f0e10;overflow:hidden}
+  details.tx>summary{cursor:pointer;list-style:none;padding:18px 22px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--white);font-weight:700}
+  details.tx>summary::-webkit-details-marker{display:none}details.tx>summary::before{content:'▸ ';color:var(--ember)}details.tx[open]>summary::before{content:'▾ '}
+  details.tx .body{max-height:560px;overflow-y:auto;padding:6px 24px 22px;border-top:1px solid var(--line)}details.tx .body p{font-size:13.5px;line-height:1.7;color:#aaa69e;margin:0 0 12px}
+  .dl{display:inline-block;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ember);text-decoration:none;border:1px solid #2a201a;border-radius:8px;padding:8px 14px}
+  footer{padding:50px 0 70px;border-top:1px solid var(--line);color:var(--noise);font-family:'JetBrains Mono',monospace;font-size:12px}footer .big{color:#bdb9b2;font-size:13px}
   .em{color:var(--ember)}
-  @media(max-width:760px){.g3,.twocol{grid-template-columns:1fr}.wm{font-size:46px}.hero h1{font-size:26px}}
+  @media(max-width:760px){.g3,.ba,.shots,.twocol{grid-template-columns:1fr}.wm{font-size:46px}.hero h1{font-size:25px}}
 </style>
 </head>
 <body>
 <div class="wrap">
+  <div class="banner"><b>INTERNAL — source of truth.</b> For Michael &amp; Sean. The full system, the source process, and the transcript in one place. (The brand/content is what's shown externally — never a comparison.)</div>
   <header class="hero">
-    <span class="pill">PRODUCTION PLAYBOOK</span>
     <div class="wm">MATERIAL<span class="ity">ITY</span></div>
-    <h1>How we produce cinematic, cohesive, scroll-stopping market content — and why the look is ours to own.</h1>
-    <p class="sub">Materiality's production system: the method, the toolchain, and the pilot. Built to make short-form that reads as one intentional brand, at a quality that earns the credibility the thesis depends on.</p>
-    <div class="meta">an Atelier Superintelligence briefing · 2026-06-05</div>
+    <h1>Production Playbook — the complete system, the process we reverse-engineered, the pilot, and the source.</h1>
+    <p class="sub">One document. How we make cinematic, cohesive, scroll-stopping market content that reads as one brand — the method, the toolchain, the proof, and the full interview behind it.</p>
+    <div class="meta">an Atelier Superintelligence briefing · updated 2026-06-05</div>
+    <nav class="toc">
+      <a href="#series">01 Series</a><a href="#cohesion">02 Cohesion</a><a href="#process">03 Process</a><a href="#stack">04 Stack</a><a href="#screens">05 Tools</a><a href="#pipeline">06 Pipeline</a><a href="#craft">07 Craft</a><a href="#michael">08 Michael</a><a href="#pilot0">09 Pilot 0</a><a href="#pilot">10 Pilot</a><a href="#changes">11 Changes</a><a href="#status">12 Status</a><a href="#transcript">13 Transcript</a>
+    </nav>
   </header>
 
-  <section>
+  <section id="series">
     <span class="kick">Context</span>
     <h2><span class="n">01</span>The series, in one screen</h2>
     <div class="twocol">
       <div>
         <h3>What it is</h3>
-        <p><b>Materiality</b> is a short-form markets briefing for the people who allocate capital in the AI transition — allocators, advisors, sophisticated investors. Each piece takes one structural force and says whether it's <b>material</b> (important enough to change how you're positioned) or noise.</p>
+        <p><b>Materiality</b> is a short-form markets briefing for the people who allocate capital in the AI transition. Each piece takes one structural force and says whether it's <b>material</b> (important enough to change how you're positioned) or noise.</p>
         <h3 style="margin-top:20px">Brand architecture</h3>
-        <p><b>Atelier Superintelligence publishes it; AI Alpha is the disclosed thesis.</b> Michael fronts it, on camera, for real. Logo = the <span class="em">MATERIALITY</span> wordmark.</p>
+        <p><b>Atelier Superintelligence publishes it; AI Alpha is the disclosed thesis.</b> Michael fronts it on camera, for real. Logo = the <span class="em">MATERIALITY</span> wordmark.</p>
         <p style="margin-top:10px"><b style="color:#e0dcd4">Domains secured:</b> <span class="em">materiality.ca</span> · <span class="em">materiality.pro</span></p>
       </div>
       <div>
-        <h3>Why production quality is the whole game</h3>
-        <p>The thesis, in the deck's own words: <em class="em">no startup out-researches Goldman on engine alone — the moat that compounds is content.</em></p>
-        <p style="margin-top:10px">So the content can't look like AI slop. It has to look cinematic, intentional, and unmistakably <em class="em">ours</em>. This playbook is the system that makes that repeatable.</p>
+        <h3>The format</h3>
+        <p>Two formats: a <b>countdown ladder</b> ("5 stages" structure) → our <b>trailer</b> ("5 Forces"); and a <b>single-story reel</b> (one fascinating thing → payoff) → our <b>episode</b> format.</p>
+        <h3 style="margin-top:20px">Why production quality is the game</h3>
+        <p>The deck's line: <em class="em">no startup out-researches Goldman on engine alone — the moat that compounds is content.</em> It has to look cinematic and unmistakably ours.</p>
       </div>
     </div>
   </section>
 
-  <section>
+  <section id="cohesion">
     <span class="kick">The core method</span>
     <h2><span class="n">02</span>The one move that makes it cohesive</h2>
-    <p class="lead" style="margin:10px 0 20px">The difference between a brand and AI slop is cohesion — every frame looking like <em style="color:var(--white)">one intentional world</em>. We get that from a single discipline:</p>
+    <p class="lead" style="margin:10px 0 20px">Cohesion — every frame as <em style="color:var(--white)">one intentional world</em> — comes from a single discipline. Emily's literal answer to why her reels go viral:</p>
     <div class="callout">
-      <div class="q">One locked reference image.</div>
-      <div class="a">We approve <em>one hero still</em> — the Materiality style and color grade — and feed it into <em>every single generation</em>. The first approved image becomes the reference for all the others, so lighting, color, and texture hold across the whole piece. <strong style="color:#d8d4cd">That one rule is what makes a series read as a single brand.</strong> It's the engine behind "recognizable throughout."</div>
+      <div class="q">"That is the answer, plain and simple."</div>
+      <div class="a">Lock <em>one reference image</em> (the style + color grade) and feed it into <em>every single generation</em>. The first approved image becomes the reference for all the rest, so lighting/color/texture hold. <strong style="color:#d8d4cd">One reference image makes a whole series read as one brand.</strong></div>
     </div>
   </section>
 
-  <section>
+  <section id="process">
+    <span class="kick">The source process</span>
+    <h2><span class="n">03</span>What we reverse-engineered (Emily Higgins interview)</h2>
+    <p>Her complete behind-the-scenes pipeline, pulled from the interview (full transcript in §13).</p>
+    <ul class="clean">
+      <li><b>Scripting</b> — collaborative with Claude (3 angles → draft → revise by voice). <em>"Not a vending machine."</em> ~70% her words.</li>
+      <li><b>Talking head filmed first</b> — real, multi-take, no teleprompter. Then design the visuals.</li>
+      <li><b>Storyboard with Claude</b> — direction + what she <em>doesn't</em> want; tactile concept → color schemes + sample prompts.</li>
+      <li><b>Look reference (Flim)</b> — search real cinema stills for the grade; hand to Claude as the reference.</li>
+      <li><b>Still-first</b> — <em>"always start with an image, then animate."</em> Nano Banana Pro; Claude writes the prompts.</li>
+      <li><b>Consistency = one reference image in every prompt</b> — the viral secret.</li>
+      <li><b>Animate in Higgsfield</b> — <em>"subtle camera motion," Kling 3.0, multi-shot</em> for ~90% of shots.</li>
+      <li><b>End-frame chaining</b> — end frame of one scene = start frame of the next (accumulating builds).</li>
+      <li><b>Soul 2.0 character</b> — a digital double of herself for in-scene shots (e.g. "on her laptop in a cafe").</li>
+      <li><b>Higgsfield MCP</b> — runs the whole loop inside Claude; even picks the model.</li>
+    </ul>
+  </section>
+
+  <section id="stack">
     <span class="kick">The toolchain</span>
-    <h2><span class="n">03</span>The stack we run</h2>
-    <p>An AI-native pipeline, orchestrated from a single chat. Built for quality first and scale second.</p>
+    <h2><span class="n">04</span>The stack we run</h2>
+    <p>An AI-native pipeline orchestrated from one chat. Nano Banana Pro runs <em>inside</em> Higgsfield — one ecosystem.</p>
     <div class="grid g3">
-      <div class="card"><div class="role">Script · storyboard · prompts</div><h3>Claude</h3><p>Develops angles, drafts, storyboards the visuals, and writes every image and video prompt — and drives the generation loop end to end.</p></div>
-      <div class="card"><div class="role">Look reference</div><h3>Cinematic reference library</h3><p>We source the exact grade and style from real cinema, then lock it as our visual reference.</p></div>
-      <div class="card"><div class="role">Stills — inside Higgsfield</div><h3>Nano Banana Pro</h3><p>Best-in-class image model, generated <em>inside</em> Higgsfield — no separate tool, no context switching.</p></div>
-      <div class="card"><div class="role">One ecosystem · orchestration</div><h3>Higgsfield (+ MCP)</h3><p>Stills (Nano Banana Pro) <em>and</em> animation (Kling 3.0, multi-shot, character, end-frames) in one place — all driven from Claude via the MCP.</p></div>
-      <div class="card"><div class="role">Voice / script</div><h3>Voice dictation</h3><p>Natural-voice revision so the script reads like Michael, not a machine.</p></div>
-      <div class="card"><div class="role">On camera · + digital double</div><h3>Real Michael</h3><p>Filmed for every direct-to-camera moment — the human is the thesis. A digital double places him into cinematic b-roll scenes (desk, server room, trading floor) without a separate shoot.</p></div>
+      <div class="card"><div class="role">Script · storyboard · prompts</div><h3>Claude</h3><p>Angles, drafts, storyboards, writes every prompt, and drives the generation loop via the Higgsfield MCP.</p></div>
+      <div class="card"><div class="role">Look reference</div><h3>Flim</h3><p>Searchable library of real cinema stills. Pull the grade, lock it as our reference.</p></div>
+      <div class="card"><div class="role">Stills — inside Higgsfield</div><h3>Nano Banana Pro</h3><p>Best-in-class image model, generated <em>inside</em> Higgsfield. (Gemini API = cheaper bulk fallback.)</p></div>
+      <div class="card"><div class="role">One ecosystem · orchestration</div><h3>Higgsfield (+ MCP)</h3><p>Stills + animation (Kling 3.0, multi-shot, Soul 2.0 character, end-frames) in one place, driven from Claude.</p></div>
+      <div class="card"><div class="role">Voice / script</div><h3>Wispr Flow</h3><p>Natural-voice dictation so the script reads like Michael (~70% human).</p></div>
+      <div class="card"><div class="role">On camera · + digital double</div><h3>Real Michael</h3><p>Filmed for direct-to-camera; a Soul 2.0 digital double places him into cinematic b-roll scenes without a shoot.</p></div>
     </div>
   </section>
 
-  <section>
+  <section id="screens">
+    <span class="kick">The tools, on screen</span>
+    <h2><span class="n">05</span>Screenshots from the interview</h2>
+    <div class="shots">
+      <figure><img src="../reference/emily-process/flim-reference-library.png"><figcaption><b>Flim</b> — searching cinema stills ("flat lay") for the grade</figcaption></figure>
+      <figure><img src="../reference/emily-process/higgsfield-nanobanana.png"><figcaption><b>Higgsfield</b> — Nano Banana Pro generating tactile stills</figcaption></figure>
+      <figure><img src="../reference/emily-process/higgsfield-color-transfer.png"><figcaption><b>Color Transfer</b> — holding the grade across scenes</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="pipeline">
     <span class="kick">The method</span>
-    <h2><span class="n">04</span>The pipeline, end to end</h2>
+    <h2><span class="n">06</span>The pipeline, end to end</h2>
     <div class="flow">
-      <div class="step"><div class="num"></div><div><h3>Script</h3><p>Develop angles, draft, refine by voice. Hooks are everything.</p></div></div>
-      <div class="step"><div class="num"></div><div><h3>Film the talking head first <span class="tag">real Michael</span></h3><p>Multiple takes, natural delivery. Then we design the visuals around it.</p></div></div>
-      <div class="step"><div class="num"></div><div><h3>Storyboard with Claude</h3><p>Direction plus what we won't do (no stock B-roll). A tactile concept → color schemes + prompts.</p></div></div>
-      <div class="step"><div class="num"></div><div><h3>Lock the look</h3><p>Source the grade from real cinema; set it as the reference image.</p></div></div>
-      <div class="step"><div class="num"></div><div><h3>Still first — then lock it <span class="tag">Nano Banana Pro</span></h3><p>Land the hero still, then make it the reference for everything. Control lives in the still.</p></div></div>
-      <div class="step"><div class="num"></div><div><h3>Animate <span class="tag">Higgsfield · Kling 3.0 · multi-shot</span></h3><p>Subtle, intentional camera motion. Keep the best 1–2 seconds of each.</p></div></div>
-      <div class="step"><div class="num"></div><div><h3>Chain &amp; cut</h3><p>End-frame chaining for builds; assemble to a tight, scroll-stopping pace.</p></div></div>
+      <div class="step"><div class="num"></div><div><h3>Script <span class="tag">Claude + Wispr Flow</span></h3><p>Angles → draft → dictate revisions. Hooks are everything.</p></div></div>
+      <div class="step"><div class="num"></div><div><h3>Film the talking head first <span class="tag">real Michael</span></h3><p>Multi-take, no teleprompter. Then design the visuals.</p></div></div>
+      <div class="step"><div class="num"></div><div><h3>Storyboard with Claude</h3><p>Direction + what we won't do. Tactile concept → color schemes + prompts.</p></div></div>
+      <div class="step"><div class="num"></div><div><h3>Lock the look <span class="tag">Flim</span></h3><p>Source the grade from real cinema; set the reference image.</p></div></div>
+      <div class="step"><div class="num"></div><div><h3>Still first — then lock it <span class="tag">Nano Banana Pro in Higgsfield</span></h3><p>Land the hero still, make it the reference for everything.</p></div></div>
+      <div class="step"><div class="num"></div><div><h3>Animate <span class="tag">Higgsfield · Kling 3.0 · multi-shot</span></h3><p>Subtle camera motion. Keep the best 1–2 seconds.</p></div></div>
+      <div class="step"><div class="num"></div><div><h3>Chain &amp; cut</h3><p>End-frame chaining for builds; assemble to a tight pace.</p></div></div>
     </div>
   </section>
 
-  <section>
+  <section id="craft">
     <span class="kick">The craft principles</span>
-    <h2><span class="n">05</span>What keeps it premium</h2>
+    <h2><span class="n">07</span>What keeps it premium</h2>
     <div class="tech">
       <div class="row"><div class="k">Reference-image lock</div><div class="v">One hero still in <em>every</em> prompt; roll the first approved image forward. The cohesion engine.</div></div>
       <div class="row"><div class="k">Still-first</div><div class="v">Get the image right, <em>then</em> animate. Never text-to-video.</div></div>
       <div class="row"><div class="k">Subtle motion default</div><div class="v"><code>subtle camera motion</code> + Kling 3.0 + multi-shot; <code>subtle subject motion</code> for people.</div></div>
-      <div class="row"><div class="k">End-frame chaining</div><div class="v">For builds where elements accumulate, the end frame becomes the next start frame — seamless continuity.</div></div>
+      <div class="row"><div class="k">End-frame chaining</div><div class="v">For accumulating builds, the end frame becomes the next start frame.</div></div>
       <div class="row"><div class="k">Tactile, never stock</div><div class="v">A real, hand-built, analyst's-desk world. The opposite of generic AI footage.</div></div>
     </div>
   </section>
 
-  <section>
-    <span class="kick">The pilot — our proof</span>
-    <h2><span class="n">06</span>"5 Forces" trailer</h2>
-    <p>The first piece, and the proof of the system: the Materiality trailer. Real Michael on the hook, the turn, and the sign-off; the five forces assemble on the desk as cards, chained by end-frames, locked to one reference image so the whole thing reads as one cinematic world.</p>
+  <section id="michael">
+    <span class="kick">On screen</span>
+    <h2><span class="n">08</span>Michael — real, plus a digital double</h2>
+    <div class="ba">
+      <div class="col now"><h4>Real filmed Michael</h4><ul>
+        <li>Every direct-to-camera moment: hook, turn, sign-off</li>
+        <li>The narrator's judgment is real — on-thesis</li>
+        <li>This is the "avatar" we deliberately dropped</li>
+      </ul></div>
+      <div class="col now"><h4>Soul 2.0 digital double</h4><ul>
+        <li>In-scene b-roll only: desk, server room, trading floor</li>
+        <li>Built once from reference images, re-selected per shot</li>
+        <li>Places Michael in any scene — no location shoot</li>
+      </ul></div>
+    </div>
+    <p style="margin-top:14px;font-size:14px;color:var(--noise)">The narrator is always real; the double is set-dressing in b-roll, never the talking head.</p>
+  </section>
+
+  <section id="pilot0">
+    <span class="kick">Process validation</span>
+    <h2><span class="n">09</span>Pilot 0 — prove the pipeline</h2>
+    <p>Before our own content, we reproduce Emily's "5 stages of AI" reel 1:1 as an internal benchmark — same shots, our pipeline — to validate cohesion, the end-frame build, and the motion against a known-good target. Six-point match scorecard in <span class="mono em">MATERIALITY-EMILY-REPLICA-BUILD.md</span>. <b style="color:#e0dcd4">Internal benchmark only</b> — the content we publish/show is our own (the "5 Forces" trailer), never a side-by-side.</p>
+  </section>
+
+  <section id="pilot">
+    <span class="kick">Our content</span>
+    <h2><span class="n">10</span>"5 Forces" trailer — the proof</h2>
+    <p>The first real piece: real Michael on the hook/turn/sign-off; the five forces assemble on the desk as cards, chained by end-frames, locked to one reference image.</p>
     <table>
       <thead><tr><th>Beat</th><th>On the desk</th><th>Motion</th></tr></thead>
       <tbody>
         <tr><td class="force">Setup</td><td>THE MODELS (demoted)</td><td><code>end-frame → next start</code></td></tr>
-        <tr><td class="force">1 · Power</td><td>+ POWER card placed</td><td><code>hand places card</code></td></tr>
+        <tr><td class="force">1 · Power</td><td>+ POWER card</td><td><code>hand places card</code></td></tr>
         <tr><td class="force">2 · Agents</td><td>+ AGENTS card</td><td><code>hand places card</code></td></tr>
         <tr><td class="force">3 · Labor</td><td>+ LABOR card</td><td><code>hand places card</code></td></tr>
         <tr><td class="force">4 · Atoms</td><td>+ ATOMS card</td><td><code>hand places card</code></td></tr>
@@ -167,23 +220,196 @@
         <tr><td class="force">Verdict</td><td>ember marks the material one</td><td><code>subtle camera motion</code></td></tr>
       </tbody>
     </table>
-    <p style="margin-top:16px;font-size:14px;color:var(--noise)">The verdict — "X is material, Y is noise" — is the screenshot-shareable signature of every piece.</p>
+    <p style="margin-top:14px;font-size:14px;color:var(--noise)">Full step-by-step: <span class="mono em">MATERIALITY-PILOT-BUILD.md</span>.</p>
   </section>
 
-  <section>
-    <span class="kick">Where we are</span>
-    <h2><span class="n">07</span>Status &amp; next steps</h2>
-    <div class="next">
-      <div class="item"><div class="n">01</div><div><b>System designed &amp; documented.</b><p>Method, toolchain, brand architecture, and the pilot are fully spec'd.</p></div></div>
-      <div class="item"><div class="n">02</div><div><b>Stand up the toolchain.</b><p>Connect the generation + animation tools and the MCP so the loop runs from one chat.</p></div></div>
-      <div class="item"><div class="n">03</div><div><b>Lock the hero reference still.</b><p>The single image that makes everything cohesive.</p></div></div>
-      <div class="item"><div class="n">04</div><div><b>Produce the "5 Forces" trailer.</b><p>The proof of the system — then the same engine runs Episodes 1–5.</p></div></div>
+  <section id="changes">
+    <span class="kick">What changed</span>
+    <h2><span class="n">11</span>From the HeyGen plan to this</h2>
+    <div class="ba">
+      <div class="col was"><h4>Was (HeyGen plan)</h4><ul>
+        <li>HeyGen AI avatar talking head</li>
+        <li>Seedance b-roll, locked prompt</li>
+        <li>Composited hand-drawn "Mark" overlay</li>
+        <li>~$24–49/mo HeyGen</li>
+      </ul></div>
+      <div class="col now"><h4>Now (Higgsfield stack)</h4><ul>
+        <li>Real filmed Michael + Soul 2.0 double for b-roll</li>
+        <li>Nano Banana Pro stills → Higgsfield animate (one ecosystem)</li>
+        <li>Tactile world, referenced from Flim, reference-image lock</li>
+        <li>Higgsfield + Flim; Nano Banana Pro already ours</li>
+      </ul></div>
     </div>
+  </section>
+
+  <section id="status">
+    <span class="kick">Where we are</span>
+    <h2><span class="n">12</span>Status &amp; next steps</h2>
+    <div class="next">
+      <div class="item"><div class="nn">01</div><div><b>System designed &amp; documented.</b><p>Method, toolchain, brand architecture, pilots — all spec'd in the repo.</p></div></div>
+      <div class="item"><div class="nn">02</div><div><b>Stand up Higgsfield + Flim + the MCP.</b><p>So the still→animate loop runs from one chat and the assistant can drive it.</p></div></div>
+      <div class="item"><div class="nn">03</div><div><b>Lock the hero reference still.</b><p>The single image that makes everything cohesive.</p></div></div>
+      <div class="item"><div class="nn">04</div><div><b>Run Pilot 0, then the "5 Forces" trailer.</b><p>Validate the pipeline, then produce our proof — the engine for Episodes 1–5.</p></div></div>
+    </div>
+  </section>
+
+  <section id="transcript">
+    <span class="kick">The source</span>
+    <h2><span class="n">13</span>Full interview transcript</h2>
+    <p>Emily Higgins' complete behind-the-scenes interview, transcribed in full. Everything above traces back to this.</p>
+    <a class="dl" href="../reference/emily-process/emily-higgins-interview-transcript.txt" download>↓ Download transcript (.txt)</a>
+    <details class="tx"><summary>Read the full transcript</summary><div class="body">
+<p>I can&#x27;t believe I got Emily Higgins to finally share how she&#x27;s creating all these insanely cinematic wheels that are getting millions of views just using AI. If you don&#x27;t know who Emily is, I&#x27;m sure you have seen her videos on Instagram. People even comment on her videos that she&#x27;s not real.</p>
+<p>Well, at least we&#x27;re gonna prove that wrong today. But honestly, every time I&#x27;ve seen her videos come up on my feed, I&#x27;m blown away how she&#x27;s been able to use AI so tastefully that her videos look insanely cinematic, highly engaging, and super cohesive. She&#x27;s a legend on how do you actually use AI tastefully in some super engaging content without making it look and sound like slop.</p>
+<p>And I&#x27;m grateful that she agreed to come onto this channel, share her exact step by step playbook on she&#x27;s able to create these videos that are generating millions of views on Instagram right now. So let&#x27;s get right into it and go behind the scenes on how she&#x27;s actually using AI. is a one five levels of AI.</p>
+<p>I have those visuals with you like you know, pointing those logos and a thing on like on the desk and switching with you and it looks like a handoff a woman as well. So feels like it&#x27;s you but I imagined that was our AI visuals. Yes.</p>
+<p>Am I correct? They are. So those are incredible.</p>
+<p>Like, I think a lot of people talk about AI slop but I think like this is the right way to leverage AI for video creation. And I&#x27;m assuming like you&#x27;ve been like in a building a partial brand on this channel, like how much those videos have helped you like, do you know any like growth metrics? Like did those videos like really shot up your followers and like engagement across your other content?</p>
+<p>Like what happened? Oh, yeah. I mean, basically, that&#x27;s where I got gained probably 80% of my audiences from like those kind of more cinematic high production value videos that you&#x27;re talking about.</p>
+<p>That&#x27;s awesome. Yeah. So yeah, I guess I get to I give the honor of looking behind the scenes here a little bit to see how those high production visuals actually come in place.</p>
+<p>So quick story how we actually met. So we met in Seattle coming a couple weeks ago when Microsoft invited us for campus tour and previously like nothing I might have seen your content but like then I looked up a profile and we when we got connected, I was like, Oh, this is amazing. And when we were chatting, I was like, this is gonna be great for you to actually like just come on this video and actually share behind the scenes because I&#x27;m curious, personally, how do you build those visuals?</p>
+<p>What can I learn from them? Like, you know, the models you&#x27;re using the tools you&#x27;re using, how are you chaining them? How do you even thinking about these visuals in the first place?</p>
+<p>So I think it&#x27;s gonna be great for anyone who&#x27;s watching to be actually get those insights to and thank you for sharing those. I know like that&#x27;s kind of like trade secret, but - Thank you for being not gatekeeping here. - Of course.</p>
+<p>Hey, that&#x27;s the nature of AI. We&#x27;re all kind of learning together. So more than happy to show the behind the scenes.</p>
+<p>So I do spend a lot of time on the scripting because I think with those types of videos like the way you articulate things goes a long way and it is reflected in how like the visuals come about and things. So I do want to make note like the scripting itself is a pretty intense process but we will kind of get into the more exciting stuff which is the creative generation. before we move ahead.</p>
+<p>So I know scripting is the hardest part. Like, you know, as a creator myself, like I spend like, you know, people might not know but like some of the hooks I spent four hours just for like four words. It&#x27;s insane.</p>
+<p>Like those words are so much important and for show from content like the words you use are so much more important than like just overall concept or even the topic. So I get that. But my question to you is like, do you just scripted yourself or do you go like AI first or you go like yourself first and then have AI refine?</p>
+<p>How is like AI playing a role in your scripting process? quick. Yeah, yeah, it&#x27;s definitely a collaborative process, which is always like what I advise people to do, you know, if you&#x27;re using AI, you shouldn&#x27;t treat it as like a vending machine.</p>
+<p>Here&#x27;s the idea, you know, read off the script, which I know plenty of people do that. And if it&#x27;s working for them, great. But I think, you know, personally, I&#x27;m just a little too maybe picky to just take what Claude gives me and run run with it.</p>
+<p>So usually I have a an outline and like I have the concept in mind and I have like some specific talking points that I want to say and I&#x27;ll take that into cloud and be like, what are some different, you know, angles potentially we can take this concept and like approach it in and it will propose them and we&#x27;ll go back and forth on like, oh, you know, I think we&#x27;re onto something here, but you know, maybe we like that&#x27;s not it. So here&#x27;s what I like, here&#x27;s what I don&#x27;t like. We go back and forth and once we&#x27;re sort of aligned on like the direction of the script, then I will have it generate like a first draft basically.</p>
+<p>And it&#x27;s just a ton of me dictating whisper flow. Copy that, yeah. back and forth of just I don&#x27;t like this or, you know, let&#x27;s try and phrase this a different way.</p>
+<p>And it definitely ends up being, I would say, I mean, it&#x27;s like a multiple hour process usually. And then by the end, it&#x27;s like probably 30 percent of Claude&#x27;s writing versus, you know, 70 percent of mine. But some of like a lot of the stimuli and stuff kind of comes from all of the back and forth that we do.</p>
+<p>So that&#x27;s kind of what the process looks like. OK, thank you for that. That&#x27;s great.</p>
+<p>I&#x27;m curious how you&#x27;re using AI for scripting. In a way, it&#x27;s similar. So like I have like a project inside Claude where I have like fed a few scripts from the past just to kind of like think of different content angles.</p>
+<p>And it&#x27;s like the same way I would put in like whatever thing I want to talk about and then my own notes and my thoughts about it. Then I go the same approach, like what are three different I go for three different angles, like how we can approach this topic. And it pretty much like spits out the whole like different narrative around it.</p>
+<p>And then I like pretty much pick the pieces from each one of them and see whatever my make sense to what I feel and what I think about it. And then I would just use that. I don&#x27;t really do a lot of back and forth after.</p>
+<p>I think I just kind of use it as like a way to as a soundboard to get some quick ideas in different directions. And then I just like start stitching them together myself. And usually what I would do is like I would just do a quick record on camera, like just within tech talk, just a quick like, you know, how it all sounds and then kind of get a feel for it, how it actually makes sense.</p>
+<p>Because sometimes I feel like when you see a script versus when you hear a script, completely different meanings. So I would do that sometimes if I&#x27;m not sure about like a couple of directions I want to kind of want to pull into. Yeah.</p>
+<p>OK, cool. Yeah. It&#x27;s definitely not to the point where we can just rely on A.I.</p>
+<p>to write our scripts. I don&#x27;t think. Hey, which means our jobs are saved for at least for now.</p>
+<p>So yeah, for now. Right. All right.</p>
+<p>Let&#x27;s dig into that to criticize here. Sure. OK.</p>
+<p>So once I have I don&#x27;t really start thinking about like the other visuals until the I have shot like I&#x27;ve narrowed down the script and I filmed the talking head. So I filmed myself saying the script. And usually that&#x27;s, you know, multiple takes as well.</p>
+<p>Because I think we talked about like, well, for this stuff, we have like I&#x27;m not like I&#x27;m not like using a teleprompter or anything. It&#x27;s a lot of like referring back of this is what and sometimes it doesn&#x27;t end up being word for word. We film it and then it&#x27;s time to kind of think about, OK, what are the visuals that are going to help bring this narrative to life?</p>
+<p>And I actually I will use A.I. to kind of like bounce ideas off of again of like, OK, here&#x27;s the direction I&#x27;m going with. Sometimes I&#x27;ll have an existing idea in there of like I want to, for example, I did a video on the optimal stopping problem, which is basically exploring versus exploiting.</p>
+<p>It&#x27;s it&#x27;s in this book called Algorithms to Live By, which is a really good book. Recommend it if you haven&#x27;t read it. We&#x27;ll drop it in the show notes.</p>
+<p>Yes. Yeah. Put it in the show notes.</p>
+<p>So I had this script and I was like, you know, I really think it&#x27;d be cool to do kind of like this miniature world of little figurines where we&#x27;re kind of like demonstrating these different scenarios in this tactile kind of way. And I&#x27;ve done that in quite a few of my videos. So the A.I., five stages of A.I.</p>
+<p>that you mentioned. I treated it with I had little cutouts that I used to kind of like explain each thing on a table. And I don&#x27;t know, I just like I really don&#x27;t like that kind of typical B roll stock footage kind of feel.</p>
+<p>So I&#x27;m trying to go into these conversations with Claude. OK, I have this idea of what I don&#x27;t want. And sometimes I have an idea of like this is maybe how we could visualize this in an interesting way.</p>
+<p>And I will have it kind of I&#x27;ll use it as a springboard of like, what does this look like visually? And it will sort of describe some different ways that we could take that concept and actually translate it into, you know, like color schemes and like, what are the pieces that are involved in these different scenes? And it&#x27;ll just give me kind of like a rough outline storyboard of what that might look like.</p>
+<p>And then it&#x27;s a very similar process to the scripting where like I&#x27;m going back and forth of, OK, I think this direction is maybe the strongest here, but I don&#x27;t like this and I do like this. And once we&#x27;ve sort of narrowed down, like, OK, we&#x27;re going to do this cut out visual direction, then I I&#x27;m going to share my screen here. OK.</p>
+<p>Yeah. I mean, if you could share like those previous chats of like you kind of brainstorming the storyboard, that&#x27;d be great, too. But again, no pressure, obviously.</p>
+<p>Yeah. Let me see if I can find I find the Claude like search feature sometimes to be very annoying. I feel like, yeah, I don&#x27;t know, putting the right keywords are just like their search is just not that good.</p>
+<p>Yeah. OK. Can you see my screen?</p>
+<p>Yes. OK. This is probably not the best example, but OK, basically, I just brain dump kind of like what I&#x27;m thinking.</p>
+<p>Here&#x27;s a script. And then here I just said, like, can you help me? I hate visuals.</p>
+<p>I&#x27;m thinking like a tactical type will land. We can use diagrams, cutouts, etc. So then it gives me some like just ideas of different analogies we can use for each of these.</p>
+<p>So sometimes what I&#x27;ll do is like I&#x27;m looking at this and it&#x27;s just hard to look at text and be able to translate into a visual. So what I will ask it to do is to give me some like sample prompts that I can use to just get a feel for like how this is going to look. So I&#x27;m going to show you guys how to generate these videos.</p>
+<p>But I always recommend starting with an image and then animating that image rather than just going into Higgsfield or like Google V03 or Clang or Seed Dance or whatever, and just typing like this is the video I want because you&#x27;re leaving so much up for interpretation where, you know, you don&#x27;t end up having a ton of control over it, even with a super detailed JSON prompt or whatever. So the best thing to do is like land on an image. and then go from there.</p>
+<p>So it gave me some examples of these are different scenes. These are prompts. So I went ahead and I generated these with Nana Banana Pro just to see like, OK, what are we thinking?</p>
+<p>How do these look? And basically, I didn&#x27;t like any of these, I don&#x27;t think. So here&#x27;s where I will have to kind of like handhold a little bit.</p>
+<p>And there&#x27;s a tool I&#x27;m going to show you guys called Flim. It is paid, unfortunately, but you get, I think, one free image down download a day. I mean, all good things come at a price, so I guess so.</p>
+<p>But this is basically a tool for it&#x27;s an AI powered tool for creatives, essentially. So the idea is like you can find these are all clips from movies and TV shows and like cinema where you can get an idea of like the style you&#x27;re going for. So if there&#x27;s a specific thing I&#x27;m looking for.</p>
+<p>So, for example, like for this specific project that we were working on, I was looking for like a flat lay kind of style. So you can actually come here and like type in flat lay and it will give you a bunch of different clips from movies and things that are in a flat lay. And actually, I think this is the one I ended up using over here, this one with the with the camera.</p>
+<p>But we went in a few different directions first. So I think first I started with this idea that I wanted to do like a writing diagram, like drawing these visuals out. So I think I had typed like drawing illustration, I don&#x27;t know, diagram or something.</p>
+<p>And you can see it&#x27;ll give you other clips and you can just download it. And then I will take that as a reference image and I&#x27;ll give it to Claude and be like, this is kind of the direction I&#x27;m looking for. So can I just say this is a brilliant strategy.</p>
+<p>Like I love cinematography, but I never thought of like combining with my creative process like this. I love it. Yeah.</p>
+<p>Especially I&#x27;ll show you guys when we get into the actual image video generations as well. But using these as a reference reference images, using an example, it goes so, so, so far as to just making it seem organic and good. So I&#x27;ll show you how I do that as well.</p>
+<p>But yeah, I use this tool a lot for, you know, getting the initial ideas to help get the prompts from Claude. So I kind of alluded to that, but I&#x27;m not writing these prompts myself. I am having Claude do it.</p>
+<p>And I&#x27;m sort of like generating the visual and then deciding whether or not it needs revisions. And then I just ask Claude to make revisions to the prompt. Or if I want to plug, you can use Prom Genie for prompting.</p>
+<p>Wait, what? Prom Genie. That&#x27;s a product.</p>
+<p>Oh, Prom Genie. Yeah, so you can just use Prom Genie for prompting, you know, just if you want to slide in a plug here. Anyway, continue on, please.</p>
+<p>Yes. Love it. Okay.</p>
+<p>Let&#x27;s go back to, I guess, Claude, just to show you guys. Okay. So, so far, so you have your script, then you do storyboarding with Claude just to understand just different types of visuals and like, you know, types of visuals you can play with.</p>
+<p>Once you have an idea, you know, you generate those images and then with those images, you want to see how we want that image to turn into a video. So you use FLIM to like, just basically, now you have the image, like, you know, this flat image and how that could kind of look in a video, essentially. So we&#x27;re still like the brainstorming exploration stage right now.</p>
+<p>Exactly. Yep. Perfect.</p>
+<p>So here&#x27;s an example of an image I got from FLIM that I uploaded as like, I think this might be cool to kind of do something similar to this. So it takes that and then it generates the prompts. By the way, this was historically, I was taking these prompts and going into Higgsfield and like pasting these in, but now Higgsfield has an MCP.</p>
+<p>So you can actually do this directly with in Claude, if you set up a custom MCP. So FYI, it&#x27;s actually much easier now because you can just go through this process and be like, okay, what does it look like? And it will generate the image for you using the Higgsfield MCP.</p>
+<p>Stay in the same chat, less context switching. Exactly. Yeah.</p>
+<p>So eliminates a little bit of the back and forth. And if you&#x27;re using agents and stuff, like you can see how that could potentially just scale things up a lot. But okay.</p>
+<p>So, so it takes the image that I gave it and it&#x27;s giving me some more prompts. And once again, I am generating these images to see like, how do we feel about this? And we&#x27;re going back and forth and see, it&#x27;s just a conversation.</p>
+<p>And so it gives me more prompts. And finally, I think we ended up, yeah, you can just, I&#x27;m not going to bore you guys with all this, but you can see all of the back and forth that goes into just trying to refine the image. So that image I showed you in FLIM.</p>
+<p>This is the one that you mentioned. Yeah. Yeah.</p>
+<p>Yes, exactly. But we took it like in a little bit of a different direction because I felt like the green and yellow was maybe a little too much going on. And this is the process generating the prompts.</p>
+<p>I&#x27;m going to show you guys what it actually ends up looking like and kind of what the visualization process. Quick clarification question here. So you mentioned that you use nanobanana to like turn those ideas into images, but you&#x27;re also using FLIM.</p>
+<p>Are you using them in parallel or is this like a part of a sequential process or just more like brainstorming either through FLIM or just through prompts in nanobanana? So I would say like if we broke the process up into two parts, there&#x27;s sort of the still planning phase, which is what I would consider this to be where we&#x27;re ironing out like still kind of the direction. That&#x27;s where I&#x27;m using FLIM largely is to like get the ideas of this is the color grade and this is the style that we&#x27;re going for.</p>
+<p>And then when we move to the actual execution of generating the visuals, that&#x27;s when I&#x27;m using nanobanana. And I will use if it&#x27;s appropriate, if the original image that we use to generate these prompts hasn&#x27;t changed drastically, then I will use that as a reference image within nanobanana to generate the image with the prompt, if that makes sense. I&#x27;ll show you what I mean, because I think that will make it easier.</p>
+<p>Okay, cool. So as mentioned, you guys can now do this right within Claude, which is awesome. But I am going to show you how to use the interface in case that&#x27;s overwhelming or you just prefer to do it that way.</p>
+<p>This is the way I&#x27;ve done it. We&#x27;re getting the behind the scenes exactly, it&#x27;s perfect. I think a lot of people might feel scared to like talk about MCP anyway.</p>
+<p>So like we can just talk through like how you&#x27;ve been doing it so far. And MCP just makes the UI a bit different. Totally.</p>
+<p>So okay, this is if you have not been in Higgsfield, by the way, there are so many different tools that you can use to do this, I am going to show Higgsfield because I feel like it&#x27;s the most popular and it has all the most tools and models in one. But you could totally use a mid journey or runway. chatgbt image two is so good right now.</p>
+<p>It is honestly better than nanobanana. In my opinion, they do have it in Higgsfield, but it&#x27;s pretty expensive credit wise. So if you&#x27;re generating the images in chatgbt, then you would still want to take them here to create the video which I&#x27;m going to show you.</p>
+<p>I&#x27;m hoping Google IO there&#x27;s going to be new nanobanana model. That&#x27;s what I&#x27;m hoping for. Okay, this is the video that I was showing that we found flim image of the camera on the background going back and forth with Claude, we were able to refine that into like something that&#x27;s a little bit different, but still definitely inspired by it.</p>
+<p>So at this point, what I will do is focus on generating the right image. And you can see I was maybe getting a little hasty because these are all generated in the wrong aspect ratio. what you can do is once you come into image, you can select your model from this long, long, long list of models.</p>
+<p>And depending on the plan you use, you can get unlimited generations with a lot of these specific models, but which you can enable by clicking on this unlimited but just keep in mind, it&#x27;s going to be painfully slow because you basically just go into this unlimited queue. So while I have that available, I just usually end up spending my credits. But you do have free generations available if you are on a certain paid plan.</p>
+<p>with Higgsfield. So basically, from this point, what I will do is take the prompts that I worked on refining with Claude, and I will just paste it in here. And as you see these images come to life, you&#x27;ll see what you like and what you don&#x27;t like.</p>
+<p>And so you can go back and forth with Claude once again and say, you know, like, I don&#x27;t love this about this image and refine the prompts that way. So we have a prompt, sometimes it will just add things on there that aren&#x27;t great, like four or five aspect ratio. So it&#x27;s gonna ignore that anyway, because it&#x27;s going to prioritize whatever aspect ratio you select here, makes sense.</p>
+<p>But then I&#x27;ll copy in the prompt. And at this point, too, let&#x27;s say we have an image from Flynn, I&#x27;m not going to use this, it&#x27;s just kind of an example, you can download it and upload it here and say, match the style and grade of attached image, I recommend if you&#x27;re going to do this user reference image, you should use that throughout all of the prompts, because that&#x27;s going to give you a consistent look and feel across all of the images. Otherwise, it&#x27;s going to end up, they&#x27;re all going to have different lighting and color and all that stuff.</p>
+<p>And it just ends up looking bad. That was going to be one of my questions for you. So you know, you&#x27;re generating multiple images for different scenes, how you keep it consistent, because in the videos, they look very consistent and cohesive throughout the video, which probably why makes them go viral in the first place.</p>
+<p>That is the answer plain and simple. Yes, yes, exactly. So the other thing you can do is like use the reference image for the first image that you generate, and then use the newly generated image that you love and are going to use as the reference image for all of the other ones.</p>
+<p>Okay. Okay. Makes sense.</p>
+<p>Yeah. And in the case where you have characters, or you have consistent elements, then you definitely will want to do that, because you want to make sure that the characters are consistent and that the elements are consistent. So you&#x27;re adding like each one of those characters as an image for reference in every single prompt that you&#x27;re using just one image usually.</p>
+<p>So like, yeah, unless let&#x27;s say you want to make you want yourself to be in the video, then in the original prompts, you would upload a bunch of images of yourself and say use that attached images as a character reference. Yeah. Or Hicksfield also has this model called Hicksfield soul 2.0.</p>
+<p>So if you&#x27;re using Hicksfield, and you plan to use yourself as a character in a lot of this footage, you can create a character here. And then you just select it every time you want to create something. And you can either upload a reference image of let&#x27;s say you go on Pinterest and you see an image of a model doing something that you want to be doing upload that and with you don&#x27;t need a prompt at all.</p>
+<p>It will just recreate that image using the uploaded image. Or you could just say, you know, whatever you want to be doing, like generate an image of this is a horrible prompt. I&#x27;m under pressure.</p>
+<p>Don&#x27;t take this as prompting advice. Use cloud to generate this one. This character on her laptop in a cafe.</p>
+<p>And the other cool thing about Higgsfield soul 2 is you there&#x27;s all of these presets of like the style for the image if you&#x27;re using a character. So you can generate like a site taken on an old smartphone or street photography. So that&#x27;s an option.</p>
+<p>And then yeah, you can just generate and make sense. Okay, so once you have these images, so question for you, are you just generating the images for the start of the scene? Or are you generating the image for the end of the scene as well and just using animating between the starting point of the ending point?</p>
+<p>It depends. Yeah, great question. So in the case where there&#x27;s not a specific scene that we need to end with, then I will just take the starting frame.</p>
+<p>So you can do that by going here, click on animate. And honestly, this is a hack kind of for 90% of your video animations. If you have the image already, you can just say subtle camera motion, use cling 3.0 and click on multi shot and it will do a phenomenal job of just naturally animating all of the elements and that without you having to like, think about it.</p>
+<p>That&#x27;s good to know. Yes, subtle camera. And if there&#x27;s a person there, I&#x27;ll say subtle subtle camera and subject motion.</p>
+<p>That&#x27;s it. And it will turn out basically perfect. The instances where you would want to use a specific prompt is when you want to be specific about the the motion.</p>
+<p>So for example, I&#x27;m trying to think. Let&#x27;s go back down here. Sorry.</p>
+<p>Okay, I think one of these. Yeah, so for this one, I think I wanted the hand to be Oh, no, I just use subtle camera motion for that one. Okay, let&#x27;s see.</p>
+<p>Let&#x27;s see. Let&#x27;s see what the results look like when you use so camera motion, because it was So let&#x27;s just look at those results. Um, I don&#x27;t know if you can see it.</p>
+<p>But yeah, yeah. Okay, so just a little dropping the card and then just like pulling back. I like it.</p>
+<p>Exactly. And here, sometimes it&#x27;ll do like unnatural things, in which case I&#x27;ll just regenerate like I think these grid lines are moving in the background, which we don&#x27;t want. So I think I had to regenerate that one.</p>
+<p>Here&#x27;s another subtle camera motion. The text ends up the only thing with cling 3.0 is the text ends up being a little not great seed dance is definitely better at that. But I have issues generating with seed dance in Higgs field it like a lot of times it&#x27;ll give me an error that like it&#x27;s like a deprecated model that might be using or something or just very strong policy control brings me to a question because like, you know, a lot of this videos where you have like the rag and like you have a lot of text on there.</p>
+<p>And I know like video models, image models are getting a lot better with the text rendering. How do you approach those videos where you have text on the image and you want it to stay consistent across or you try avoiding that in your storyboarding altogether? and just use the subtle motion effects.</p>
+<p>So that way the text isn&#x27;t really like being wonky. Yeah, I honestly the video models can get it right occasionally. So basically, I just end up regenerating until I feel like it&#x27;s usable.</p>
+<p>Or if it becomes a problem, we&#x27;re like, okay, this really is bad, then I will try and just change the scene completely and and just avoid having the text in it. But a lot of times the beauty of short form is like you only need a couple seconds of the clip. And especially if you&#x27;re using this multi shot feature that cling has, you can just pick and choose the best cuts of that.</p>
+<p>And a lot of times it&#x27;s it&#x27;s a non issue. Now, you know, the funny thing is, well, first of all, great, great, like very clever inside of like subtle motion camera, because again, for b rolls, we want to be switching up to one or two seconds. And now every time I watch a video, I was just watching it as we were talking.</p>
+<p>I cannot unsee the subtle camera motion. I just cannot unsee it anymore. Yeah, that&#x27;s not what it is.</p>
+<p>I&#x27;ll tell you. Even here. Oh, no, this is subtle camera motion as well.</p>
+<p>And like it even puts the thing in there. And that&#x27;s like your multiple camera, right? Like the multiple shot because you have like the shot from the top, then you have a shot from the zoom in.</p>
+<p>Yeah. Brilliant. Brilliant.</p>
+<p>Well, it&#x27;s all just AI. So hey, see what I tell about AI is like unlike any technology like before where input no matter who puts it like the same input is going to yield same output like AI is non deterministic, which is like the biggest thing. How you use AI makes such a big difference.</p>
+<p>So again, I appreciate you like sharing all these behind the scenes, these cool little tricks. I hope it&#x27;s going to help a bunch of people, you know, get better at using your visuals. Totally.</p>
+<p>Yeah. The one thing I was going to say, though, that you had brought up is like, okay, there are going to be times when you need a very specific thing. So in the case of those visuals are gone by now, the the five stages of AI, like they&#x27;re not going to be in here anymore.</p>
+<p>But that&#x27;s a case where I&#x27;m using the end frame of one video of one scene for as the start frame of another. So in that case, like to get the very consistent theme of, okay, there&#x27;s this car on the table. And now I want that card to stay where it is.</p>
+<p>And another card to be added that needs to be done sequentially so that you are having that consistency throughout the whole thing. And and you would do that by having the end frame of one of your scenes be the starting frame of the next. And like if you&#x27;re doing writing or something, and you know what the you want to show somebody writing something, you know what the end scene is going to be because you need to show what they wrote, right.</p>
+<p>So and that&#x27;s the case where you would use an end frame as well to guide the animation a little bit better. Makes sense. Makes sense.</p>
+<p>Is that the same prompt to use for there too? Actually, no, the subtle camera moment wouldn&#x27;t work for that one for the writing scene. Yeah, I would be more specific there of hand writes, or draws diagram to Yeah, I mean, nothing crazy.</p>
+<p>Like it&#x27;s basically less than a sentence. So just like a bunch of reference images, whatever you need, just to make sure you&#x27;re really guiding what it needs to generate along with instructions on what to do. Exactly.</p>
+<p>Yeah, yeah. I mean, I think honestly, like, that&#x27;s kind of it. I mean, then I just download it and put it all into my my editor.</p>
+<p>That&#x27;s awesome. Yeah, it&#x27;s like the elegance is like from the simplicity that you have in your process. Yeah, it&#x27;s it&#x27;s really not nothing, nothing too complicated.</p>
+<p>I&#x27;m really excited about the Higgs field MCP. The the cool thing about that, too, is if you don&#x27;t know, like what model to use, you don&#x27;t know, it will figure that all for you just using the documentation. So I was playing around with it a couple days ago.</p>
+<p>And I was asking it like, it was one of those instances where I just needed the end frame, like I had the end frame, I was like, it needs to end like this. I don&#x27;t really care how it starts. And I asked Claude using the Higgs field MCP.</p>
+<p>And it was like, okay, this is the best model for that this based on, you know, the style of animation you&#x27;re looking for and the fact you only need the end frame. So really cool that now that&#x27;s an option. And you can just do it all within the chat.</p>
+<p>Yeah. So I&#x27;m excited to start using that. But yeah, Higgs fields are grateful for all this because you have all the models available.</p>
+<p>And honestly, I mean, oh, actually, let me show you because this is pretty cool, too. It&#x27;s not something that I really use as much these days. But it when I was like my very, very first videos that did pretty well.</p>
+<p>We&#x27;re just we&#x27;re using just these like that were shot on my iPhone. We&#x27;re just using some of these templates that they have in here. So if you go watch, watch, I&#x27;m like, so those just like prompting templates they usually have, or like some pop, they are like they&#x27;re pre built, like special effects and animations and stuff changes so much all the time.</p>
+<p>I know. They&#x27;re like so many tabs and features. It&#x27;s like, oh, yeah, yeah.</p>
+<p>I know every time I open stuff, we have these ones. Yeah. So I mean, if under this Higgs field DOP, I&#x27;m I&#x27;m sure some of these other ones have it, too.</p>
+<p>You can kind of scroll through this horizontal menu at the top. But there&#x27;s all of these cool special effects and transitions you can add. I remember that face sponge having a moment, I think maybe like 12 months ago or something that was like everywhere on the social the face.</p>
+<p>Oh, oh, I never actually I think that might have been right. That might be before I really was in the social space. But yeah, I even have used this like Earth zoom out and I did one of my videos that got like millions of users about basically like how we&#x27;re all sort of cognitive offloading and becoming dumber and more reliant on technology.</p>
+<p>It was I used this to do like this cool effect and super cool. Do you use these effects for like the hook of the video or just like within the storytelling after I&#x27;ve really only used it for just like certain parts, transitions and things not not as much during the in the hook. But I&#x27;m sure if you will need to create a great hook, this is an amazing way of doing it.</p>
+<p>Yeah, it&#x27;s been a while since I&#x27;ve looked at this. I&#x27;m feeling kind of inspired. Yeah, I think like, again, again, like I said, it was just like all against with simplicity, which is like the beauty of it.</p>
+<p>And this was great. I mean, I&#x27;m honestly thank you again for not gatekeeping and like just sharing this publicly, showing us the receipts of your chat, sharing this behind the scenes of what may be coming later this week. I&#x27;m pretty sure the video is going to be video is going to take some time to edit.</p>
+<p>It&#x27;s going to happen. I&#x27;m sure the video is going to be live. by the time it gets there or everybody gets a sneak sneak preview.</p>
+<p>But no, like anyone who&#x27;s like listening, like go follow. I think your handle is it&#x27;s Emily Higgins. Yeah.</p>
+<p>Go follow. It&#x27;s Emily Higgins. Like her content like makes you think in the visual are just so aesthetic.</p>
+<p>It&#x27;s just so fun to watch. So like soothing to watch. So go follow her on all the socials.</p>
+<p>Thank you again. Big thank you for Emily for jumping on and sharing us behind the scenes. Go follow her if you haven&#x27;t already and comment below who should be the next person I should have on my YouTube so we can look behind the scenes how they&#x27;re actually leveraging AI.</p>
+<p>As always, thanks for tuning in your chief officer signing off.</p>
+    </div></details>
   </section>
 
   <footer>
     <div class="big">The machine surfaces everything. Almost none of it is material.</div>
-    <div style="margin-top:8px"><span class="em">MATERIALITY</span> · an Atelier Superintelligence briefing · the public thesis behind the AI Alpha ETF</div>
+    <div style="margin-top:8px"><span class="em">MATERIALITY</span> · an Atelier Superintelligence briefing · internal source of truth<br>
+    Companion docs: MATERIALITY-AI-PRODUCTION.md · MATERIALITY-PILOT-BUILD.md · MATERIALITY-EMILY-REPLICA-BUILD.md · MATERIALITY-BRAND.md</div>
   </footer>
 </div>
 </body>
