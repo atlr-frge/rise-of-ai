@@ -15,6 +15,9 @@ Source: ~23 screenshots Sean pulled, almost all slides from ONE viral TikTok by
   prompt themselves.
 
 ## Implication for Materiality
-Add a second content pillar — **"Understand AI" edutainment** (snackable, save-worthy, grows
-audience) — alongside **"What's material" markets verdicts** (credibility core). Both under
-one frame: *cut through the noise to what's material.* See the playbook §10.
+Add a second content pillar — **"The big picture"** — alongside **"What's material" markets
+verdicts**. Borrow this video's **format and depth**, NOT its tutorial angle. We do **not**
+teach people how to *use* Claude; we explain the **big structural topics** (the 5 stages of AI,
+what AGI means, why agents change the game) — the understanding a decision-maker needs to judge
+what's material. Both pillars under one frame: *cut through the noise to what's material.*
+See the playbook §10.
