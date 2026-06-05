@@ -72,8 +72,15 @@ Nano Banana Pro.
 
 - **Reference image in every prompt** (the core lock, above).
 - **Roll the reference forward:** first approved image becomes the reference for all the rest.
-- **Characters / Michael on screen in b-roll:** add character reference images to every prompt,
-  or build a **Higgsfield Soul 2.0 character** and re-select it each time (has style presets).
+- **Michael on screen — two ways (important):**
+  1. **Real filmed Michael** for every *direct-to-camera* moment (hook, turn, sign-off). The
+     narrator's judgment is real — on-thesis. This is the "avatar" we deliberately dropped.
+  2. **A Higgsfield Soul 2.0 character (digital double) of Michael** for *in-scene b-roll* —
+     Michael at the desk marking a filing, in a server room, on a trading floor. Build the
+     character once from reference images of Michael, then **re-select it every shot** (has
+     style presets). It places him in any cinematic scene without a shoot. It is set-dressing
+     in b-roll, never the talking head.
+- **Other recurring elements:** add their reference image to every prompt for consistency.
 - **Color/grade drift:** the same reference is what holds lighting and color together; without
   it, *"they all have different lighting and color and it ends up looking bad."*
 
