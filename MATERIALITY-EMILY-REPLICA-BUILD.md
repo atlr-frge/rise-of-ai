@@ -1,13 +1,16 @@
-# Pilot 0 — Exact Replica of Emily's "5 Stages of AI"
+# Pilot 0 — Exact Replica of Emily's "5 Stages of AI" (Capability Proof)
 
-*Internal proof build. Reproduce Emily Higgins' "5 stages of AI" video **1:1** — her exact
-words, her exact visuals — using our Claude + Flim + Nano Banana Pro + Higgsfield pipeline. The
-goal is to prove we can match her quality and **perfect the process** against a known-good
-target before pointing it at Materiality. Drafted 2026-06-05.*
+*Capability proof. Reproduce Emily Higgins' "5 stages of AI" video **1:1** — her exact words,
+her exact visuals — using our Claude + Flim + Nano Banana Pro + Higgsfield pipeline. Concrete,
+shareable evidence that we can produce best-in-class cinematic AI content at her level — a proof
+to put in front of Canaccord and partners, and to perfect the process before pointing it at
+Materiality. Drafted 2026-06-05.*
 
-> ⚠️ **Internal training only — do not publish.** This is a 1:1 copy of someone else's video for
-> process validation. It is a benchmark, not a release asset. Once we match it, we apply the
-> *process* (not the content) to our own "5 Forces" trailer (`MATERIALITY-PILOT-BUILD.md`).
+> **How to use it:** a **demo/benchmark you show** (Canaccord, sponsors, partners) to prove the
+> production capability behind the "content is the moat" thesis. Because it reproduces her exact
+> piece side-by-side, it's a proof artifact — not a public post under the Materiality brand. For
+> published content we apply the same *process* (not her content) to our own "5 Forces" trailer
+> (`MATERIALITY-PILOT-BUILD.md`). A side-by-side "hers vs. ours" is the most persuasive way to show it.
 
 Source: her video transcript + frame analysis in `reference/emily-higgins/`.
 
