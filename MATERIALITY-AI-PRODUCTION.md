@@ -31,8 +31,8 @@ Everything below serves that.
 | Script + storyboard + prompts | **Claude** | 3 angles → draft → revise; storyboards visuals; writes all image/video prompts |
 | Voice dictation | **Wispr Flow** | Dictate script revisions in natural voice (~70% human / 30% Claude) |
 | Look reference | **Flim** | Search real cinema stills for the grade/style; hand to Claude as reference |
-| Stills | **Nano Banana Pro** | Generate the hero stills (we have this via Gemini, billing on) |
-| Animation + orchestration | **Higgsfield** (+ **MCP**) | Image→video, Kling 3.0, multi-shot, Soul 2.0 character, end-frames. The MCP runs the loop inside Claude. |
+| Stills | **Nano Banana Pro — inside Higgsfield** | Generate the hero stills *in* Higgsfield (it's in the model list). One ecosystem. Gemini API is the cheaper **bulk fallback** if Higgsfield credits run hot. |
+| Animation + orchestration | **Higgsfield** (+ **MCP**) | The hub: Nano Banana Pro stills, Kling 3.0, multi-shot, Soul 2.0 character, end-frames. The MCP runs the **whole** still→animate loop inside Claude — no leaving the ecosystem. |
 | Prompt help (optional) | **Prompt Genie** | Prompt optimization |
 | Edit | your editor | Cut the best 1–2s of each clip |
 
@@ -53,9 +53,9 @@ Nano Banana Pro.
    returns color schemes, scene pieces, and **sample prompts**.
 4. **Reference the look in Flim** — search the style (e.g. "flat lay", "marked document"),
    download a still, give it to Claude as the grade/style reference.
-5. **Still first, always** — generate the hero still in **Nano Banana Pro** (Claude writes the
-   prompt). Never text-to-video; the control lives in the still. **Lock the hero as the
-   reference image.**
+5. **Still first, always** — generate the hero still with **Nano Banana Pro inside Higgsfield**
+   (Claude writes the prompt). Never text-to-video; the control lives in the still. **Lock the
+   hero as the reference image.**
 6. **Animate** — in Higgsfield: **"subtle camera motion," Kling 3.0, multi-shot** for ~90% of
    shots ("subtle subject motion" too if a person is in frame). Multi-shot returns several
    angles; keep the best 1–2 seconds.
@@ -100,7 +100,8 @@ This is the highest-leverage setup step and it lets the assistant run most of th
 - **Higgsfield** — paid plan (unlimited generations on a slow queue, or credits for speed).
   The hub: Kling 3.0, multi-shot, Soul 2.0, end-frames, the MCP. **The one essential new sub.**
 - **Flim** — paid (1 free download/day); the cinematic reference library.
-- **Nano Banana Pro** — already available via Gemini (billing enabled).
+- **Nano Banana Pro** — runs **inside Higgsfield** (no separate tool / no context switching).
+  The Gemini API stays as a cheaper **bulk-stills fallback** (billing already enabled).
 - **Wispr Flow** — voice dictation (optional but recommended for scripting).
 - *No HeyGen needed.*
 
