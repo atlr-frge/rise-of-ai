@@ -1,4 +1,4 @@
-# Materiality — Session Handoff
+# Materiality, Session Handoff
 
 *State of the build as of 2026-06-05. Pick up here next session.*
 
@@ -25,9 +25,9 @@ talking head). The next action is **producing the "5 Forces" pilot** in that pip
 | Doc | What |
 |---|---|
 | `MATERIALITY-BRAND.md` | Name, thesis, **brand architecture**, taglines, identity |
-| `MATERIALITY-AI-PRODUCTION.md` | **Rewritten** — the Higgsfield-stack pipeline |
-| `MATERIALITY-PILOT-BUILD.md` | **NEW** — the "5 Forces" pilot, step by step |
-| `playbook/index.html` | **NEW** — HTML playbook for Sean (review/decision artifact) |
+| `MATERIALITY-AI-PRODUCTION.md` | **Rewritten**: the Higgsfield-stack pipeline |
+| `MATERIALITY-PILOT-BUILD.md` | **NEW**: the "5 Forces" pilot, step by step |
+| `playbook/index.html` | **NEW**: HTML playbook for Sean (review/decision artifact) |
 | `MATERIALITY-SERIES-INTRO.md` / `-EPISODE-FORMAT.md` / `-EPISODES-2-5.md` | Scripts + formats |
 | `MATERIALITY-SERIES-AUDIT.md` | Fixes for the existing scripts |
 | `reference/emily-process/` | Interview transcript + tool screenshots |
@@ -35,12 +35,12 @@ talking head). The next action is **producing the "5 Forces" pilot** in that pip
 
 ## Open items
 - **Greenlight the pivot + tool spend:** Higgsfield (paid) + Flim (paid); Nano Banana Pro already
-  ours (Gemini billing on). HeyGen no longer needed. (Sean decision — see playbook.)
-- **Set up the Higgsfield MCP** in Claude (`higgsfield.ai/mcp`) — lets the assistant drive the loop.
-- **Define the ONE hero reference still** (the Materiality look) — the lock everything depends on.
+  ours (Gemini billing on). HeyGen no longer needed. (Sean decision, see playbook.)
+- **Set up the Higgsfield MCP** in Claude (`higgsfield.ai/mcp`), lets the assistant drive the loop.
+- **Define the ONE hero reference still** (the Materiality look), the lock everything depends on.
 - **Macro-CTA** still undecided. **Compliance** must bless the AI Alpha disclosure wording.
 - **Freshness pass** on episode stats tagged `[verify]`.
-- **Al pushback on the name** ("not marketing friendly") — argued in chat; resolution = keep the
+- **Al pushback on the name** ("not marketing friendly"), argued in chat; resolution = keep the
   name, let hooks + a descriptor do the marketing. May revisit.
 
 ## Immediate next steps

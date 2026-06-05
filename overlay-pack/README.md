@@ -1,7 +1,7 @@
-# Materiality — Brand Overlay Pack
+# Materiality, Brand Overlay Pack
 
 *The handcrafted signature layer, authored outside HeyGen and built to drop into it. This is
-the one part of production HeyGen cannot generate to spec — so we make it once, here, and
+the one part of production HeyGen cannot generate to spec, so we make it once, here, and
 reuse it on every episode.*
 
 ---
@@ -11,7 +11,7 @@ reuse it on every episode.*
 | | |
 |---|---|
 | **HeyGen CAN** | store fonts/colors/logos/audio in a **Brand Kit**; **import video overlays** (MP4/MOV/**WEBM** ≤200MB); upload & sync **custom SFX**; stylized captions; reuse all of it across projects. |
-| **HeyGen CANNOT** | author our bespoke signature to spec — its graphics are *AI-generated, not hand-drawn*, it "trades control for speed," motion caps at 10s, and generative output **varies** (our signature must be identical every time). |
+| **HeyGen CANNOT** | author our bespoke signature to spec, its graphics are *AI-generated, not hand-drawn*, it "trades control for speed," motion caps at 10s, and generative output **varies** (our signature must be identical every time). |
 
 **So:** author the signature here → load into HeyGen Brand Kit + Asset Library → reuse forever.
 HeyGen is where it *lives and repeats*, not where it's *born*.
@@ -46,11 +46,11 @@ The exact look matches `../styleframes/` (the visual spec) and the system in
 
 ---
 
-## The felt-squeak SFX (the audio logo) — record/source once
+## The felt-squeak SFX (the audio logo), record/source once
 
 HeyGen can host and sync it, but you must supply the sound. Spec:
-- **The squeak:** one clean chisel-tip marker drag on paper, ~0.3–0.5s, mono, 44.1kHz,
-  normalized to ~-3dB, tight head/tail. This fires on **every** Mark — it's the show's audio logo.
+- **The squeak:** one clean chisel-tip marker drag on paper, ~0.3-0.5s, mono, 44.1kHz,
+  normalized to ~-3dB, tight head/tail. This fires on **every** Mark, it's the show's audio logo.
 - **Paper thwack:** a single sheet dropped on a hard desk (the Settle).
 - **Stamp thud:** a rubber stamp on paper (the sign-off).
 Record on a phone in a quiet room, or pull from a library; the point is **one fixed asset reused
@@ -64,23 +64,23 @@ every episode**, like the visuals.
   `index.html` (or the matching `assets/*.svg`) and re-export.
 - **Re-export the animated overlays** (the pipeline that built `animated/`): render each clip's
   frames headless in `alpha` + `clean export` mode (1080×1920) with a **transparent page**
-  (set `html`/`body` background to transparent, then `omit_background` screenshots — otherwise
+  (set `html`/`body` background to transparent, then `omit_background` screenshots, otherwise
   the page color bleeds in and you lose alpha), then encode **ProRes 4444 MOV**:
   ```
   ffmpeg -framerate 18 -i f_%03d.png -c:v prores_ks -profile:v 4444 -pix_fmt yuva444p10le out.mov
   ```
   ProRes 4444 reliably preserves alpha and HeyGen imports MOV directly. (Alpha WebM via
-  `libvpx-vp9 -pix_fmt yuva420p` is smaller but **drops alpha on some ffmpeg builds** — verify
-  with `ffprobe … pix_fmt` showing `yuva*` before trusting it.) Keep grain OFF the overlay —
+  `libvpx-vp9 -pix_fmt yuva420p` is smaller but **drops alpha on some ffmpeg builds**: verify
+  with `ffprobe ... pix_fmt` showing `yuva*` before trusting it.) Keep grain OFF the overlay,
   it belongs on the footage layer and it balloons file size.
 - **Static PNGs** are exported from the SVGs with a transparent background (`omit_background`).
 
 ---
 
 ## Per-episode swaps (the only things that change)
-- **Constraint card** copy (one sentence, white on ember) — see each episode's card line.
-- **Verdict** words — `X` material (circled) vs `Y` noise (struck).
-- **The marked document** — the real filing + which line the Circle/Strike hits + the scrawl.
+- **Constraint card** copy (one sentence, white on ember), see each episode's card line.
+- **Verdict** words, `X` material (circled) vs `Y` noise (struck).
+- **The marked document**: the real filing + which line the Circle/Strike hits + the scrawl.
 
-Everything else — the marker texture, the squeak, the wordmark, the stamp, the colors, the
-fonts — stays identical. That consistency is the brand.
+Everything else, the marker texture, the squeak, the wordmark, the stamp, the colors, the
+fonts, stays identical. That consistency is the brand.

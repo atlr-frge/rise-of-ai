@@ -1,14 +1,14 @@
 > ⚠️ **SUPERSEDED (2026-06-05).** The HeyGen/avatar approach was replaced after the Emily
-> Higgins process deep dive. Current production method is the Higgsfield stack —
+> Higgins process deep dive. Current production method is the Higgsfield stack,
 > see `MATERIALITY-AI-PRODUCTION.md` and `MATERIALITY-PILOT-BUILD.md`. Kept for reference only.
 
-# Materiality — HeyGen Test Build (exact Emily knock-off, end to end in HeyGen)
+# Materiality, HeyGen Test Build (exact Emily knock-off, end to end in HeyGen)
 
 *Goal: produce a near-exact structural knock-off of @emilyissocial's first video (the "5 stages
-of AI" explainer) using ONLY HeyGen — avatar, Seedance b-roll, captions, brand kit — to test
+of AI" explainer) using ONLY HeyGen, avatar, Seedance b-roll, captions, brand kit, to test
 whether HeyGen can carry the whole show. No hand-drawn overlays. Consistency comes from a
 locked AI-b-roll style, not from hand-authoring.*
-*Status: DRAFT — uncommitted, pending review. Created 2026-06-02. Supersedes the hand-drawn
+*Status: DRAFT, uncommitted, pending review. Created 2026-06-02. Supersedes the hand-drawn
 overlay approach in `overlay-pack/`.*
 
 ---
@@ -30,7 +30,7 @@ AI by locking the style and reusing it on every generation:
    busy, cluttered, on-screen text, watermark, cartoon."*
 4. **Same avatar look, same caption style, same logo** every episode (HeyGen Brand Kit).
 
-That four-part lock is what makes AI b-roll read as "one show," exactly like Emily's does —
+That four-part lock is what makes AI b-roll read as "one show," exactly like Emily's does,
 without anyone drawing anything.
 
 ---
@@ -49,10 +49,10 @@ become Seedance concept plates in the locked style.*
 | 4 | Prop metaphor (DNA helix), big concept | the materiality turn | Seedance hero shot in the locked style; pyramid completes, glows ember. |
 | 5 | Big binary question ending | "deciding which is material is the only edge left" | Avatar back to camera; **logo** wordmark turn; sign-off "That's what's material." |
 
-**Captions:** HeyGen native caption preset — word-by-word, brand font, ember punch word.
+**Captions:** HeyGen native caption preset, word-by-word, brand font, ember punch word.
 **Logo:** the chosen Materiality mark (recommend D2 · The Mark) on the turn + end card.
 **Pyramid:** build with HeyGen's Brand System / Motion Designer (animated text + shapes in
-brand colors) — a clean ember-on-near-black diagram, NOT hand-drawn.
+brand colors), a clean ember-on-near-black diagram, NOT hand-drawn.
 
 ---
 
@@ -76,13 +76,13 @@ brand colors) — a clean ember-on-near-black diagram, NOT hand-drawn.
 - [ ] The whole thing was produced **inside HeyGen** with no external authoring
 - [ ] It has Emily's **pace and intimacy** (mic in frame, quick cuts, kinetic captions)
 
-If all six hold, HeyGen carries the show end to end and we scale to Episodes 1–5.
+If all six hold, HeyGen carries the show end to end and we scale to Episodes 1-5.
 
 ---
 
 ## What I still need from you to run the test
-1. **Pick the logo** (recommend D2) — I'll finalize it as SVG + PNG + transparent.
-2. **HeyGen access** per the runbook Phase 0–1 (tier + Seedance integration + Avatar V capture).
+1. **Pick the logo** (recommend D2), I'll finalize it as SVG + PNG + transparent.
+2. **HeyGen access** per the runbook Phase 0-1 (tier + Seedance integration + Avatar V capture).
    The render itself happens in HeyGen; I can't operate your account, but every input above is ready.
-3. **(Optional) one master style frame** — once your fal balance is topped up, I can generate
+3. **(Optional) one master style frame**: once your fal balance is topped up, I can generate
    the canonical look plate to lock the b-roll style; or you can make it inside HeyGen/Seedance.

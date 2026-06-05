@@ -1,4 +1,4 @@
-# Materiality — Brand Brief
+# Materiality, Brand Brief
 
 *An Atelier Superintelligence briefing. Replaces the "Rise of AI" working title.*
 *Created 2026-05-24.*
@@ -36,12 +36,12 @@ Materiality is not a metaphor for what the AI Alpha ETF does. It *is* what it do
 - **Thematic pair:** the fund decides what's material. The series shows the work.
 - **Bonus:** "material information" is securities language, which reads as credible and serious to the exact people the fund raises from.
 
-## Brand architecture — Atelier publishes, AI Alpha is the disclosed thesis
+## Brand architecture, Atelier publishes, AI Alpha is the disclosed thesis
 
 *Decided 2026-06-02. This governs every external piece.*
 
 **Atelier Superintelligence is the publisher. AI Alpha is the disclosed thesis Materiality
-explains. Lead with Atelier; reference AI Alpha.** Neither brand "takes over" — they sit in a
+explains. Lead with Atelier; reference AI Alpha.** Neither brand "takes over", they sit in a
 fixed endorsed relationship.
 
 **Why this structure:**
@@ -49,7 +49,7 @@ fixed endorsed relationship.
    not ads. The flows thesis depends on it feeling like education, not promotion.
 2. **Compliance.** AI Alpha is a regulated vehicle. Content under the *fund's* brand becomes
    fund marketing (performance-claim limits, mandatory disclaimers, likely pre-clearance).
-   Atelier-published editorial that *discloses* affiliation is the lighter, safer posture —
+   Atelier-published editorial that *discloses* affiliation is the lighter, safer posture,
    and cleaner given the Canaccord/Al sensitivity.
 3. **Durable asset.** The Atelier brand compounds and is ours; Materiality survives any change
    to the fund's structure.
@@ -69,7 +69,7 @@ fixed endorsed relationship.
   opinion, not investment advice. Not an offer or solicitation to buy any security.
   [Compliance-cleared through Canaccord Genuity.]"*
 
-### Caveat — compliance owns the final wording
+### Caveat, compliance owns the final wording
 The boundary between "disclosed affiliation" and regulated fund marketing is a **regulatory**
 call, not a branding one. The exact AI Alpha credit line and disclaimer above must be approved
 by compliance / Canaccord before publish. This doc sets the *structure*; compliance sets the
@@ -113,10 +113,10 @@ Inherit the Atelier system so series and fund read as one house.
 
 ## Domains (checked 2026-05-24)
 
-- **Primary recommendation:** `materiality.fm` — available, media-native (.fm reads as broadcast).
-- **Zero-cost path:** `atlr.pro/materiality` — hosted under the domain you already own.
-- **Premium option:** `materiality.ai` — registered but parked for sale on Afternic; buyable, very on-thesis, costs money.
-- **Watch:** `materiality.io` — in redemption period, may drop and become available soon.
+- **Primary recommendation:** `materiality.fm`, available, media-native (.fm reads as broadcast).
+- **Zero-cost path:** `atlr.pro/materiality`, hosted under the domain you already own.
+- **Premium option:** `materiality.ai`, registered but parked for sale on Afternic; buyable, very on-thesis, costs money.
+- **Watch:** `materiality.io`, in redemption period, may drop and become available soon.
 - **Not available:** `materiality.com` (held since 1998), `.co` and `.net` (parked).
 
 ## Trademark note

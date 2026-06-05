@@ -1,4 +1,4 @@
-# Materiality — Logo
+# Materiality, Logo
 
 The brand is **Materiality**; the logo is the **wordmark**. Primary treatment: `MATERIAL` in
 off-white, `ITY` in ember. Confirmed 2026-06-02.
@@ -25,5 +25,5 @@ off-white, `ITY` in ember. Confirmed 2026-06-02.
 
 ## HeyGen Brand Kit
 Upload `materiality-wordmark.png` as the logo, the Inter + JetBrains Mono fonts, and the
-color tokens above. (A separate **logomark / icon** is being explored — see the brand
+color tokens above. (A separate **logomark / icon** is being explored, see the brand
 exploration; once chosen it joins this folder.)

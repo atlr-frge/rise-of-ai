@@ -1,4 +1,4 @@
-# Materiality — Series Content Audit
+# Materiality, Series Content Audit
 
 *Evaluation of the five existing episode scripts against the goals: compelling, up to date,
 shareable, and built to grow an audience that takes action. Reviewed 2026-06-02.*
@@ -21,30 +21,30 @@ shareable, and built to grow an audience that takes action. Reviewed 2026-06-02.
   - Labor: *"Companies aren't firing people because AI works. They're firing because AI might."*
   - Atoms: *"For twenty years software ate the world. Now AI is eating software."*
   These are keepers. They drop straight into Beat 1 of the new format.
-- **Every episode already has a "why now" data block** with sourced figures — that's the
+- **Every episode already has a "why now" data block** with sourced figures, that's the
   citation discipline the deck promises. It just needs a freshness pass (below).
 
 ---
 
-## P0 — Fix before this becomes the foundation
+## P0, Fix before this becomes the foundation
 
 **1. Format mismatch: the scripts are built for the thing we just replaced.**
 Every script specifies a full **HeyGen AI avatar** throughout, an **Al Verma call-in**,
 3:45 length, and the **"Rise of AI" + "VPW | Canaccord Genuity" always-on bug**. Our new
 system is: **hybrid** (real Michael cold-open + faceless handcrafted body), **the Mark**
-signature, 60–90s, Materiality brand. → Each script needs a re-cut to the new beats. The
+signature, 60-90s, Materiality brand. → Each script needs a re-cut to the new beats. The
 *words* mostly survive; the *production wrapper* is replaced. (Ep 1 is already done in
 [MATERIALITY-EP1-INTRO.md](MATERIALITY-EP1-INTRO.md) as the template.)
 
-**2. Stale time-dated claims — these are factually wrong as of June 2026.**
+**2. Stale time-dated claims, these are factually wrong as of June 2026.**
 - **Ep 5 (Verification):** says *"in five months, that becomes a legal problem"* and *"in
-  August, that becomes illegal."* The EU AI Act date is **Aug 2, 2026** — that's **~2 months
+  August, that becomes illegal."* The EU AI Act date is **Aug 2, 2026**: that's **~2 months
   away, not five.** The "five months" line was true when written (~March). **Must change to
   "this August" / "in two months."** A wrong countdown destroys credibility with this audience.
 - **Ep 3 (Labor):** *"~30,000 tech jobs cut in early 2026,"* *"London protest Feb 28, 2026."*
   These are now months old and read as backward-looking. Refresh to mid-2026 numbers.
-- **Ep 1 / Ep 4:** capex ($660–690B), datacenter TWh, $2.5T global spend are all **2026
-  *projections*** — by now some have actuals or revisions. Verify or reframe as run-rate.
+- **Ep 1 / Ep 4:** capex ($660-690B), datacenter TWh, $2.5T global spend are all **2026
+  *projections***: by now some have actuals or revisions. Verify or reframe as run-rate.
 
 **3. Canaccord / Al Verma co-branding conflicts with the relationship-sensitivity rule.**
 The old scripts put *"With Verma Private Wealth | Canaccord Genuity"* as an always-on bug,
@@ -59,7 +59,7 @@ keep "compliance-cleared through Canaccord" as a credibility line only where app
 
 ---
 
-## P1 — Make it more compelling & differentiated
+## P1, Make it more compelling & differentiated
 
 **4. Episodes 1 and 4 overlap.** Grid (power) and Atoms (HALO trade) both lean on the same
 capex/nuclear/heavy-assets material. Sharpen the distinction: **Ep 1 = the physical
@@ -77,14 +77,14 @@ or the model-commoditization ("everything's a wrapper") trade. Worth a research 
 
 ---
 
-## P2 — Shareability & audience that takes action
+## P2, Shareability & audience that takes action
 
 **7. Define the action ladder.** "Build an audience that takes action" needs a named action.
 Per the deck, the funnel is: *AI/investing is an education problem → the team that explains
 the market wins the flows.* So the action ladder should be explicit:
-   - **Micro (every video):** a comment prompt — *"Material or noise? Tell me below."*
+   - **Micro (every video):** a comment prompt, *"Material or noise? Tell me below."*
    - **Mid:** follow + "watch the next force" (the series binds itself together).
-   - **Macro:** the off-platform destination — `materiality.fm` / the AI Alpha thesis / an
+   - **Macro:** the off-platform destination, `materiality.fm` / the AI Alpha thesis / an
      advisor conversation. **Pick one primary macro-CTA and make it consistent.**
 
 **8. Engineer the share, don't hope for it.** Shareable = *"this reframed how I see X."* The
@@ -102,7 +102,7 @@ resets it. The trailer plants all five so each episode is both standalone and a 
 1. ~~**Decision:** Canaccord/Al on-camera or off?~~ ✅ **Resolved 2026-06-02: off-camera.** No
    always-on bug, no Al call-in; "compliance-cleared through Canaccord" stays an off-camera fact.
 2. **Freshness research pass:** refresh the dated stats in all five "why now" blocks to June
-   2026. *(Partially done in the re-cut — Ep 5 date fixed; all figures tagged `[verify]`.)*
-3. ~~**Re-cut Episodes 2–5**~~ ✅ **Done:** [MATERIALITY-EPISODES-2-5.md](MATERIALITY-EPISODES-2-5.md),
+   2026. *(Partially done in the re-cut, Ep 5 date fixed; all figures tagged `[verify]`.)*
+3. ~~**Re-cut Episodes 2-5**~~ ✅ **Done:** [MATERIALITY-EPISODES-2-5.md](MATERIALITY-EPISODES-2-5.md),
    single-story format, avatar-led, Canaccord/Al dropped, dates refreshed.
 4. **Lock the macro-CTA** and build the per-episode verdict share-card.
