@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Materiality — Production Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ember:#E85D04; --glow:#F48C06; --black:#0A0A0A; --ink:#0d0d0f;
+    --white:#FAFAFA; --paper:#F1EBDD; --noise:#6B6B6B; --line:#222024;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--black);color:#e8e6e2;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.55}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:999;opacity:.035;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .kick{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--ember)}
+  h2{font-size:30px;font-weight:900;letter-spacing:-.02em;margin:0 0 6px}
+  h2 .n{color:var(--ember);font-family:'JetBrains Mono',monospace;font-size:18px;margin-right:12px;font-weight:700}
+  section{padding:60px 0;border-top:1px solid var(--line)}
+  p{color:#bdb9b2;font-size:16px}
+  .lead{font-size:19px;color:#d8d4cd}
+  a{color:var(--glow)}
+
+  /* hero */
+  .hero{padding:80px 0 56px;text-align:left}
+  .wm{font-weight:900;font-size:64px;letter-spacing:-.03em;line-height:1}
+  .wm .ity{color:var(--ember)}
+  .hero h1{font-size:34px;font-weight:800;letter-spacing:-.02em;margin:22px 0 10px;max-width:760px;color:var(--white)}
+  .hero .sub{font-size:18px;color:#a8a39a;max-width:680px}
+  .hero .meta{margin-top:26px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--noise);letter-spacing:.04em}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:5px 13px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ember);margin-bottom:22px}
+
+  /* big callout */
+  .callout{background:linear-gradient(135deg,#17120d,#100d0a);border:1px solid #2a201a;border-left:3px solid var(--ember);
+    border-radius:14px;padding:30px 32px;margin:8px 0}
+  .callout .q{font-size:22px;font-weight:800;color:var(--white);letter-spacing:-.01em}
+  .callout .a{margin-top:12px;color:#c9c4bc;font-size:16px}
+  .callout em{color:var(--glow);font-style:normal}
+
+  /* tool grid */
+  .grid{display:grid;gap:16px;margin-top:26px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .card{background:#111013;border:1px solid var(--line);border-radius:12px;padding:20px}
+  .card h3{font-size:16px;font-weight:800;color:var(--white);margin-bottom:4px}
+  .card .role{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ember);letter-spacing:.08em;text-transform:uppercase}
+  .card p{font-size:14px;margin-top:8px}
+
+  /* pipeline */
+  .flow{display:flex;flex-direction:column;gap:0;margin-top:26px;counter-reset:step}
+  .step{display:grid;grid-template-columns:54px 1fr;gap:18px;padding:16px 0;border-bottom:1px dashed #1c1a1e}
+  .step:last-child{border-bottom:0}
+  .step .num{counter-increment:step;width:44px;height:44px;border-radius:11px;background:#15120f;border:1px solid #2a201a;
+    color:var(--ember);font-family:'JetBrains Mono',monospace;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:18px}
+  .step .num::before{content:counter(step)}
+  .step h3{font-size:17px;font-weight:800;color:var(--white);margin-bottom:3px}
+  .step p{font-size:14.5px}
+  .step .tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--noise)}
+
+  /* techniques */
+  .tech{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:24px}
+  .tech .row{display:grid;grid-template-columns:200px 1fr;gap:0;border-bottom:1px solid var(--line)}
+  .tech .row:last-child{border-bottom:0}
+  .tech .k{background:#100f12;padding:18px 20px;font-weight:800;color:var(--white);font-size:15px;border-right:1px solid var(--line)}
+  .tech .v{padding:18px 20px;font-size:14.5px;color:#bdb9b2}
+  .tech .v code{font-family:'JetBrains Mono',monospace;color:var(--glow);background:#1a1510;padding:2px 7px;border-radius:5px;font-size:13px}
+
+  /* before/after */
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+  .ba .col{border:1px solid var(--line);border-radius:12px;padding:22px}
+  .ba .was{background:#0f0e10}
+  .ba .now{background:linear-gradient(135deg,#17120d,#100d0a);border-color:#2a201a}
+  .ba h4{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+  .ba .was h4{color:var(--noise)} .ba .now h4{color:var(--ember)}
+  .ba ul{list-style:none} .ba li{padding:6px 0;font-size:14.5px;color:#c2bdb5;border-bottom:1px solid #161418}
+  .ba li:last-child{border:0}
+  .ba .was li{color:#8d8880;text-decoration:line-through;text-decoration-color:#444}
+
+  /* pilot table */
+  table{width:100%;border-collapse:collapse;margin-top:22px;font-size:14px}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line)}
+  th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ember)}
+  td code{font-family:'JetBrains Mono',monospace;color:var(--glow);font-size:12.5px}
+  td.force{font-weight:800;color:var(--white)}
+
+  /* screenshots */
+  .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+  .shots figure{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#0f0e10}
+  .shots img{width:100%;display:block}
+  .shots figcaption{padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--noise)}
+  .shots figcaption b{color:var(--ember)}
+
+  /* decisions */
+  .dec{background:#100f12;border:1px solid var(--line);border-radius:12px;padding:8px 24px;margin-top:22px}
+  .dec .item{padding:18px 0;border-bottom:1px solid var(--line)}
+  .dec .item:last-child{border:0}
+  .dec .q{font-weight:800;color:var(--white);font-size:16px}
+  .dec .q::before{content:"?";color:var(--ember);font-family:'JetBrains Mono',monospace;margin-right:10px;font-weight:700}
+  .dec .ctx{font-size:14px;color:#a8a39a;margin-top:5px;padding-left:24px}
+
+  footer{padding:50px 0 70px;border-top:1px solid var(--line);color:var(--noise);font-family:'JetBrains Mono',monospace;font-size:12px}
+  footer .big{color:#bdb9b2;font-size:13px}
+  .em{color:var(--ember)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="pill">FOR SEAN · REVIEW &amp; ANALYZE</span>
+    <div class="wm">MATERIAL<span class="ity">ITY</span></div>
+    <h1>Production Playbook: how we make the cinematic AI series — reverse-engineered from Emily Higgins' exact process.</h1>
+    <p class="sub">We got Emily Higgins' full behind-the-scenes pipeline (the creator behind the AI reels doing millions of views). It changes our plan: drop the avatar, adopt her real-talking-head + cinematic-AI-b-roll stack. This is the recommendation, the method, and the pilot.</p>
+    <div class="meta">Source: Emily Higgins interview (full transcript on file) · Drafted 2026-06-05 · an Atelier Superintelligence briefing</div>
+  </header>
+
+  <section>
+    <span class="kick">The whole game in one move</span>
+    <h2><span class="n">01</span>Why her videos look cohesive — and ours will</h2>
+    <p class="lead" style="margin:10px 0 20px">Her videos go viral because they look like <em style="color:var(--white)">one intentional world</em>, not AI slop. We asked her how. Her answer, verbatim:</p>
+    <div class="callout">
+      <div class="q">"That is the answer, plain and simple."</div>
+      <div class="a">She locks <em>one reference image</em> — the style and color grade — and feeds it into <em>every single generation</em> ("match the style and grade of the attached image"). Her first approved image becomes the reference for all the others. <strong style="color:#d8d4cd">One reference image is what makes a whole series read as a single brand.</strong> It is the proven version of the "recognizable throughout" goal we've chased from day one.</div>
+    </div>
+  </section>
+
+  <section>
+    <span class="kick">The stack</span>
+    <h2><span class="n">02</span>The tools — and what each does</h2>
+    <p>An all-AI pipeline, mostly inside one chat. We already have Nano Banana Pro (via Gemini). The one essential new subscription is Higgsfield.</p>
+    <div class="grid g3">
+      <div class="card"><div class="role">Script · storyboard · prompts</div><h3>Claude</h3><p>3 angles → draft → revise. Storyboards the visuals and writes every image/video prompt. Drives the loop via the Higgsfield MCP.</p></div>
+      <div class="card"><div class="role">Look reference</div><h3>Flim</h3><p>Searchable library of real cinema stills. Pull the grade/style we want, hand it to Claude as the reference.</p></div>
+      <div class="card"><div class="role">Stills</div><h3>Nano Banana Pro</h3><p>Generates the hero stills. Already live for us via Gemini (billing enabled).</p></div>
+      <div class="card"><div class="role">Animation · orchestration</div><h3>Higgsfield (+ MCP)</h3><p>Image→video, Kling 3.0, multi-shot, Soul 2.0 character, end-frames. The MCP runs the whole loop inside Claude and even picks the model.</p></div>
+      <div class="card"><div class="role">Voice dictation</div><h3>Wispr Flow</h3><p>Dictate script revisions in natural voice (she ends ~70% human / 30% Claude).</p></div>
+      <div class="card" style="border-style:dashed;opacity:.7"><div class="role">Dropped</div><h3>HeyGen · Seedance</h3><p>The avatar plan. Replaced — a real filmed Michael is more cinematic and more on-thesis.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="kick">Seeing is believing</span>
+    <h2><span class="n">03</span>Her actual screen — the tools in use</h2>
+    <p>Frames pulled from the interview: the reference library, the still generator, and the consistency control.</p>
+    <div class="shots">
+      <figure><img src="../reference/emily-process/flim-reference-library.png" alt="Flim"><figcaption><b>Flim</b> — searching cinema stills ("flat lay") for the grade</figcaption></figure>
+      <figure><img src="../reference/emily-process/higgsfield-nanobanana.png" alt="Higgsfield Nano Banana"><figcaption><b>Higgsfield</b> — Nano Banana Pro generating tactile stills</figcaption></figure>
+      <figure><img src="../reference/emily-process/higgsfield-color-transfer.png" alt="Higgsfield color transfer"><figcaption><b>Color Transfer</b> — holding the grade across scenes</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <span class="kick">The method</span>
+    <h2><span class="n">04</span>The pipeline, end to end</h2>
+    <div class="flow">
+      <div class="step"><div class="num"></div><div><h3>Script with Claude <span class="tag">+ Wispr Flow</span></h3><p>Not a vending machine. Outline → 3 angles → draft → dictate revisions. Hooks are everything.</p></div></div>
+      <div class="step"><div class="num"></div><div><h3>Film the talking head FIRST <span class="tag">real Michael</span></h3><p>Multiple takes, no teleprompter. Only then design the visuals.</p></div></div>
+      <div class="step"><div class="num"></div><div><h3>Storyboard with Claude</h3><p>Say the direction <em>and what we don't want</em> ("no stock B-roll"). A tactile concept → color schemes + sample prompts.</p></div></div>
+      <div class="step"><div class="num"></div><div><h3>Reference the look in Flim</h3><p>Search the style, download a still, give it to Claude as the grade reference.</p></div></div>
+      <div class="step"><div class="num"></div><div><h3>Still first — then lock it <span class="tag">Nano Banana Pro</span></h3><p>Never text-to-video. Land the hero still, then make it the reference image for everything.</p></div></div>
+      <div class="step"><div class="num"></div><div><h3>Animate <span class="tag">Higgsfield · Kling 3.0 · multi-shot</span></h3><p>"Subtle camera motion" for 90% of shots. Keep the best 1–2 seconds.</p></div></div>
+      <div class="step"><div class="num"></div><div><h3>Chain with end-frames, then cut</h3><p>End frame of one scene = start frame of the next (for builds). Drop into the editor. "The elegance is from the simplicity."</p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="kick">The tricks that matter</span>
+    <h2><span class="n">05</span>Five techniques to copy exactly</h2>
+    <div class="tech">
+      <div class="row"><div class="k">Reference-image lock</div><div class="v">One hero still in <em>every</em> prompt; roll the first approved image forward as the ref. The cohesion engine.</div></div>
+      <div class="row"><div class="k">Still-first</div><div class="v">Generate the image, get it right, <em>then</em> animate. Control lives in the still.</div></div>
+      <div class="row"><div class="k">Subtle motion default</div><div class="v"><code>subtle camera motion</code> + Kling 3.0 + multi-shot for ~90% of shots; add <code>subtle subject motion</code> for people.</div></div>
+      <div class="row"><div class="k">End-frame chaining</div><div class="v">For accumulating builds (a card stays, another is added), the end frame becomes the next start frame.</div></div>
+      <div class="row"><div class="k">Tactile, not stock</div><div class="v">Cut-outs, flat-lays, the analyst's desk. Her words: <em>"I really don't like that typical stock-footage feel."</em></div></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="kick">The pilot</span>
+    <h2><span class="n">06</span>"5 Forces" trailer — her "5 stages" recipe, our content</h2>
+    <p>She built "5 stages of AI" as cut-out cards on a desk, the structure assembling one card at a time, chained by end-frames. We do the same with our five forces. Real Michael carries the hook, turn, and sign-off.</p>
+    <table>
+      <thead><tr><th>Beat</th><th>Card on the desk</th><th>Motion</th></tr></thead>
+      <tbody>
+        <tr><td class="force">Setup</td><td>THE MODELS (demoted)</td><td><code>end-frame → next start</code></td></tr>
+        <tr><td class="force">1 · Power</td><td>+ POWER card placed</td><td><code>hand places card</code></td></tr>
+        <tr><td class="force">2 · Agents</td><td>+ AGENTS card</td><td><code>hand places card</code></td></tr>
+        <tr><td class="force">3 · Labor</td><td>+ LABOR card</td><td><code>hand places card</code></td></tr>
+        <tr><td class="force">4 · Atoms</td><td>+ ATOMS card</td><td><code>hand places card</code></td></tr>
+        <tr><td class="force">5 · Trust</td><td>all five on the desk</td><td><code>subtle camera motion</code></td></tr>
+        <tr><td class="force">Verdict</td><td>ember marks the material one</td><td><code>subtle camera motion</code></td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:16px;font-size:14px;color:var(--noise)">Full step-by-step in <span class="mono em">MATERIALITY-PILOT-BUILD.md</span>. Captions, verdict card, and wordmark are overlaid in the editor (not baked into generations — avoids the text-rendering problem).</p>
+  </section>
+
+  <section>
+    <span class="kick">What changes</span>
+    <h2><span class="n">07</span>From the HeyGen plan to this</h2>
+    <div class="ba">
+      <div class="col was"><h4>Was (HeyGen plan)</h4><ul>
+        <li>HeyGen AI avatar of Michael</li>
+        <li>Seedance b-roll, locked prompt</li>
+        <li>Composited hand-drawn "Mark" overlay</li>
+        <li>Consistency via prompt discipline</li>
+        <li>~$24–49/mo HeyGen</li>
+      </ul></div>
+      <div class="col now"><h4>Now (Higgsfield stack)</h4><ul>
+        <li>Real filmed Michael (on-thesis: human = the alpha)</li>
+        <li>Nano Banana Pro stills → Higgsfield animate</li>
+        <li>Tactile cut-out world, referenced from Flim</li>
+        <li>Consistency via the reference-image lock</li>
+        <li>Higgsfield + Flim; Nano Banana Pro already ours</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="kick">For Sean — the calls to make</span>
+    <h2><span class="n">08</span>Decisions to weigh</h2>
+    <div class="dec">
+      <div class="item"><div class="q">Real Michael over an avatar — agreed?</div><div class="ctx">More cinematic and more on-brand, but it means a (light) shoot per episode vs. hands-free avatar scaling. Recommendation: yes, real.</div></div>
+      <div class="item"><div class="q">Approve the tool spend?</div><div class="ctx">Higgsfield (paid) + Flim (paid). Nano Banana Pro already covered. Roughly the same monthly as HeyGen, different vendor.</div></div>
+      <div class="item"><div class="q">Set up the Higgsfield MCP?</div><div class="ctx">Lets the whole loop run inside Claude and lets the assistant drive most of production. Highest-leverage setup step.</div></div>
+      <div class="item"><div class="q">Greenlight the pilot?</div><div class="ctx">The "5 Forces" trailer is the test. If it holds, it's the repeatable engine for Episodes 1–5.</div></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="big">The machine surfaces everything. Almost none of it is material.</div>
+    <div style="margin-top:8px"><span class="em">MATERIALITY</span> · an Atelier Superintelligence briefing · the public thesis behind the AI Alpha ETF<br>
+    Companion docs: MATERIALITY-AI-PRODUCTION.md · MATERIALITY-PILOT-BUILD.md · MATERIALITY-BRAND.md</div>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,71 +1,58 @@
 # Materiality — Session Handoff
 
-*State of the build as of 2026-06-02. Pick up here next session.*
+*State of the build as of 2026-06-05. Pick up here next session.*
 
 ## Where we are
-**Materiality** is the content series (replaces the "Rise of AI" working title). It is the
-public-facing briefing that explains the AI-investing thesis. Strategy, format, brand
-architecture, and the production pipeline are decided and documented. The next real action is
-**producing the intro as a HeyGen test** — blocked only on standing up the HeyGen account.
+**Materiality** is the content series (the public briefing behind the AI-investing thesis).
+Strategy, brand, and production method are decided. **Major update this session:** after a deep
+dive on Emily Higgins' actual process, the production pipeline **pivoted from HeyGen/avatar to
+her real stack** (Claude + Flim + Nano Banana Pro + Higgsfield + MCP, with a real filmed
+talking head). The next action is **producing the "5 Forces" pilot** in that pipeline.
 
 ## Decisions locked
-- **Name:** Materiality. (`MATERIALITY-BRAND.md`)
-- **Brand architecture:** Atelier Superintelligence **publishes**; AI Alpha is the **disclosed
-  thesis**, never the on-screen publisher. No Canaccord/Al on-camera. (in `MATERIALITY-BRAND.md`)
-- **Logo:** the **wordmark** (`MATERIAL` off-white + `ITY` ember) is the working logo
-  (`logo/`). A symbol is parked — 8 Gemini Pro explorations sit **local-only** in
-  `logo/gemini/` (slash-M and emblem-M were the front-runners); not committed by request.
-- **Format:** **avatar-led, end-to-end in HeyGen.** Talking-head = HeyGen Avatar V; b-roll =
-  Seedance 2.0 (inside HeyGen) in a **locked consistent AI style**; captions/brand kit native.
-  The hand-drawn "Mark" overlay approach is **set aside** (see `MATERIALITY-AI-PRODUCTION.md`
-  and the test plan).
-- **The Emily knock-off:** her 1st video ("5 stages") = our **trailer/intro**
-  (`MATERIALITY-SERIES-INTRO.md`); her 2nd ("owl story") = our **episode format**
-  (`MATERIALITY-EPISODE-FORMAT.md`).
+- **Name:** Materiality. **Logo:** wordmark `MATERIAL`+`ITY` (`logo/`). Symbol parked (Gemini
+  Pro explorations local-only in `logo/gemini/`).
+- **Brand architecture:** Atelier **publishes**; AI Alpha is the **disclosed thesis**. No
+  Canaccord/Al on-camera. (`MATERIALITY-BRAND.md`)
+- **Production pipeline (NEW, decided 2026-06-05):** real filmed Michael + cinematic AI b-roll
+  via **Claude → Flim → Nano Banana Pro → Higgsfield (+MCP)**. Cohesion = **one locked reference
+  image in every generation**. Motion = `subtle camera motion` + Kling 3.0 + multi-shot.
+  Continuity = end-frame chaining. **HeyGen/avatar dropped.** (`MATERIALITY-AI-PRODUCTION.md`)
+- **Format mapping:** Emily's 1st video ("5 stages") = our trailer; her 2nd ("owl story") =
+  episode format.
 
-## Key docs in this repo
+## Key docs
 | Doc | What |
 |---|---|
-| `MATERIALITY-BRAND.md` | Name, thesis, **brand architecture**, taglines, visual identity |
-| `MATERIALITY-PRODUCTION-SYSTEM.md` | Craft/style system |
-| `MATERIALITY-AI-PRODUCTION.md` | HeyGen + Seedance pipeline |
-| `MATERIALITY-HEYGEN-TEST-BUILD.md` | **The intro test plan** (Emily knock-off, in HeyGen) |
-| `MATERIALITY-SERIES-INTRO.md` | Trailer script |
-| `MATERIALITY-EPISODE-FORMAT.md` + `MATERIALITY-EPISODES-2-5.md` | Episode template + re-cut scripts |
+| `MATERIALITY-BRAND.md` | Name, thesis, **brand architecture**, taglines, identity |
+| `MATERIALITY-AI-PRODUCTION.md` | **Rewritten** — the Higgsfield-stack pipeline |
+| `MATERIALITY-PILOT-BUILD.md` | **NEW** — the "5 Forces" pilot, step by step |
+| `playbook/index.html` | **NEW** — HTML playbook for Sean (review/decision artifact) |
+| `MATERIALITY-SERIES-INTRO.md` / `-EPISODE-FORMAT.md` / `-EPISODES-2-5.md` | Scripts + formats |
 | `MATERIALITY-SERIES-AUDIT.md` | Fixes for the existing scripts |
-| `MATERIALITY-INTRO-PRODUCTION-CHECKLIST.md` | What to set up to produce |
-| `logo/` | Wordmark logo (SVG + PNG) |
+| `reference/emily-process/` | Interview transcript + tool screenshots |
+| `MATERIALITY-HEYGEN-TEST-BUILD.md` | **Superseded** (kept for reference) |
 
-## Open items (not yet decided/done)
-- **Macro-CTA:** the one action every video drives to (follow / `materiality.fm` / advisor convo). Undecided.
-- **Compliance:** Canaccord/compliance must bless the exact AI Alpha credit-line + disclaimer wording.
-- **Freshness pass:** episode stats tagged `[verify]` need refresh to current dates before publish.
-- **HeyGen account:** not set up — the immediate blocker (see plan rec below).
-- **Logo symbol:** parked; wordmark is fine to launch with.
+## Open items
+- **Greenlight the pivot + tool spend:** Higgsfield (paid) + Flim (paid); Nano Banana Pro already
+  ours (Gemini billing on). HeyGen no longer needed. (Sean decision — see playbook.)
+- **Set up the Higgsfield MCP** in Claude (`higgsfield.ai/mcp`) — lets the assistant drive the loop.
+- **Define the ONE hero reference still** (the Materiality look) — the lock everything depends on.
+- **Macro-CTA** still undecided. **Compliance** must bless the AI Alpha disclosure wording.
+- **Freshness pass** on episode stats tagged `[verify]`.
+- **Al pushback on the name** ("not marketing friendly") — argued in chat; resolution = keep the
+  name, let hooks + a descriptor do the marketing. May revisit.
 
-## HeyGen plan recommendation (for the test)
-Tiers (Apr 2026): Free · Creator · Pro · Business · Enterprise. (Old "Team" plan retired.)
-- **Free** — Seedance + tools available to *test*, but **watermark** + only 3 videos. Not for a shippable test.
-- **Creator** (~$24–29/mo) — **no watermark, 1080p**, Seedance, Avatar, ~200 credits/mo.
-  *Enough for the test + light iteration.* Cheapest viable.
-- **Pro** (~$49/mo) — **2,000 credits/mo**. The right tier to actually **produce Episodes 1–5**
-  + the clip drip (Seedance b-roll + avatar renders burn credits fast).
-- **Business** ($149+/seat) — team collaboration/integrations; overkill for a solo test
-  (and fewer base credits than Pro).
+## Immediate next steps
+1. Sean reviews `playbook/index.html`; greenlight real-Michael + the tool spend.
+2. Stand up **Higgsfield** (+ MCP) and **Flim**.
+3. Lock the **hero reference still** (Flim → Nano Banana Pro).
+4. Build the pilot per `MATERIALITY-PILOT-BUILD.md` (film Michael → build the 5-card desk via
+   end-frames → animate subtle motion → cut).
 
-**Recommendation:** **Creator** to validate the test cheaply → **Pro** when committing to the
-full series. Watch credits: Avatar ≈ 20 credits/min and Seedance b-roll also consumes credits,
-so 200 (Creator) goes quickly with iteration; a $15/300 credit pack or Pro covers it.
-
-## Immediate next steps (next session)
-1. Stand up HeyGen (Creator or Pro), confirm **Seedance 2.0 integration + Gesture Control +
-   Avatar V** are on the plan, **rotate the leaked V2 API key** (per old handoff).
-2. Capture **Avatar V** (15s, mic in frame). Set up **Brand Kit** (wordmark, Inter/JetBrains
-   Mono fonts, ember/near-black colors).
-3. Make ONE **master Seedance style frame** + lock the prompt (style consistency).
-4. Build the intro per `MATERIALITY-HEYGEN-TEST-BUILD.md` (fastest first pass = **Video Agent**).
-
-## Environment notes (for next session)
-- Git: use `/usr/local/bin/gh` (the `/tmp/gh-cli` path is ephemeral). Token-embed push pattern is in `~/.claude/CLAUDE.md`.
-- Gemini logo gen: key in `~/.claude/.env`, **billing enabled** (Nano Banana Pro works). Consider rotating the key (it was pasted in chat).
-- fal.ai image gen: balance was exhausted (unused now that logos went via Gemini / b-roll goes via HeyGen).
+## Environment notes
+- Git: `/usr/local/bin/gh` (not the ephemeral `/tmp/gh-cli`); token-embed push pattern in `~/.claude/CLAUDE.md`.
+- **Gemini (Nano Banana Pro):** key in `~/.claude/.env`, **billing enabled**, Pro works. Rotate the key (was pasted in chat).
+- yt-dlp: needs `--extractor-args "youtube:player_client=android_vr"` to bypass PO-token 403s.
+- Whisper: `whisper-cli` + medium model at `~/.cache/whisper-models/` for transcription.
+- fal.ai: balance exhausted (unused now).
