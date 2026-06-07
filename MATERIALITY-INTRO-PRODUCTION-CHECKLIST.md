@@ -1,3 +1,7 @@
+> ⚠️ **SUPERSEDED (2026-06-05).** This checklist is HeyGen-era. Current production method is the
+> Higgsfield stack with real Michael filmed on iPhone (lav mic, out of frame). See
+> `MATERIALITY-AI-PRODUCTION.md` and `MATERIALITY-PILOT-BUILD.md`. Kept for reference only.
+
 # Materiality Intro - Production Setup Checklist
 
 *What must be set up to produce the intro as an exact structural knock-off of @emilyissocial's

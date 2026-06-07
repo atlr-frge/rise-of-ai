@@ -37,7 +37,7 @@ flips from "utopia or doom" to **"the only edge left is deciding what's material
 
 ## BEAT 1, THE HOOK  (0:00-0:08)
 
-**[SHOT]** Michael, talking head, mic in frame, warm light, direct to lens. Mid-thought, no intro.
+**[SHOT]** Michael, talking head, warm light, direct to lens. Mid-thought, no intro.
 
 **SYNC:**
 > "There are five forces deciding who wins the AI transition.
@@ -100,7 +100,7 @@ glowing across it. Michael's hand rests the marker down.
 ## BEAT 5, WORDMARK + SIGN-OFF (callback close)  (1:25-end)
 
 **[SHOT]** Black. `MATERIAL`(off-white)`ITY`(ember) draws on with the squeak. Then Michael
-back to lens, mic in frame.
+back to lens.
 
 **SYNC:**
 > "There are five forces. This is Materiality, we tell you which ones are material, and we
@@ -119,7 +119,7 @@ back to lens, mic in frame.
 
 ## Production notes
 - **One Michael shoot** covers the trailer's talking-head AND every episode's cold-open/sign-off.
-  Mic in frame, warm natural light, direct to lens, match Emily's intimacy, not a news desk.
+  Lav mic out of frame, warm natural light, direct to lens. Match Emily's intimacy, not a news desk.
 - **The pyramid is the hero prop.** Build it for real on paper, shoot top-down, add a sticky-note
   layer per force. This single sequence becomes the reusable visual that ties the series together.
 - The five document plates marked here become the **reusable Mark library** for the episodes.

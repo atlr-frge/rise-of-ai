@@ -33,7 +33,7 @@ Multi-agent → AGI → Superintelligence.**
 
 | # | Her VO (verbatim) | Her visual | Our recreation (Nano Banana Pro still + ref image → Higgsfield motion) |
 |---|---|---|---|
-| 1 | *"There are five stages to artificial intelligence and most people only know of level one, the large language model."* | Talking head, mic in frame, animated | Film presenter to-cam, warm light, mic in frame. (Validates talking-head capture.) |
+| 1 | *"There are five stages to artificial intelligence and most people only know of level one, the large language model."* | Talking head, mic in frame, animated | Film presenter to-cam, warm light, lav out of frame. (Validates talking-head capture.) |
 | 2 | *"This is ChatGPT, Gemini, Claude, you ask, it answers. Most people think this is AI, but in reality, this is just the foundation."* | Top-down: pyramid base drawn; `LLM` sticky note at base; ChatGPT/Gemini/Claude logo cards on desk | Hero still: notebook + pyramid base + `LLM` sticky + 3 logo cards. **Motion:** `hand places sticky note` (specific). Save **end frame**. |
 | 3 | *"The next stage is where things get interesting, you give AI a job. Not 'answer this,' but 'go do this thing for me.' This is agentic AI, and this is where we are right now."* | Add layer; `Agentic` sticky above LLM | **Start frame = shot 2's end frame** → add `Agentic` sticky. **Motion:** `hand places card`. |
 | 4 | *"But now imagine it's not one agent, but 20. One researches, one writes, another publishes, they delegate to each other, no human involved at all. The infrastructure is being laid right now."* | Flat-lay constellation of many agent sticky-cards, connected | Flat-lay of ~20 sticky-cards + connecting lines, ref image. **Motion:** `subtle camera motion`, overhead drift. |

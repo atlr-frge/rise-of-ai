@@ -222,9 +222,10 @@ ASSET CHECK
 *From transcript + frame analysis of `Emily-Higgins.mov` (9:16, 2:41), 2026-06-02. This is
 the real thing we're matching, not a guess.*
 
-- **Talking head:** warm natural light, **a podcast mic in the frame**, animated hands,
-  direct to lens, intimate, like she's telling you one thing across a table. Match this for
-  Michael's cold-open/sign-off. *Not* a news desk; mic-in-frame is part of the warmth.
+- **Talking head:** warm natural light, animated hands, direct to lens, intimate, like she's
+  telling you one thing across a table. Emily keeps a podcast mic in the frame for that
+  at-the-desk warmth. We match the warmth and the eyeline for Michael's cold-open/sign-off, but
+  record on a **lav, out of frame**, for clean audio and a more cinematic shot. *Not* a news desk.
 - **Handcrafted b-roll, shot top-down:** a hand **draws a diagram live** in a notebook (she
   builds a pyramid), adding **physical sticky-note labels** one at a time. Also tactile paper
   craft (a DNA helix made of sticky notes) and **real-prop metaphors** on the desk (an owl
