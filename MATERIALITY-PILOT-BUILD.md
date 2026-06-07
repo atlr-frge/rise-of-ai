@@ -25,12 +25,32 @@ end-frames**. Subtle camera motion animates it. That is exactly the pilot.
    grain. Approve one. **This is THE reference image** for every other generation in the pilot.
 
 ## Step 1, Film Michael (one short shoot)
-Real Michael, handheld, warm light, mic in frame, direct to lens. Multiple takes, no
-teleprompter. Capture, from the trailer script:
+Real Michael, direct to lens, multiple takes, no teleprompter. Capture, from the trailer script:
 - The **hook** ("There are five forces deciding who wins the AI transition. You're watching one.")
 - The **turn** ("...deciding which one is material is the only edge left.")
 - The **sign-off** ("This is Materiality. That's what's material.")
-Bank ~60-90s of usable Michael. (Also covers every episode's cold-open/sign-off later.)
+Bank ~60-90s of usable Michael. This one shoot also covers every episode's cold-open and sign-off.
+
+### Filming setup (the kit, decided 2026-06-06)
+- **Camera: iPhone 16 Pro, rear camera** (not the MacBook webcam, not the selfie cam). 4K at
+  24fps for the filmic look. On a **tripod at eye level**, locked. Lock focus and exposure on
+  the face so it does not hunt. Apple Log later if we want grading room; plain 4K is fine to start.
+- **Audio: wireless lav, out of frame** (DJI Mic Mini or Rode Wireless Go), clipped discreetly,
+  paired to the iPhone. Cleaner and more cinematic than a desk mic, and it keeps the frame clean.
+  (We are not using the Blue Yeti; it reads consumer and is awkward to pair with the iPhone.)
+- **Framing:** medium / head-and-shoulders, eye level, direct to lens.
+
+### The location and the one lighting fix
+The space is the high-rise with floor-to-ceiling windows and the city skyline (see
+`Rise_of_AI_Pilot_v2` reference). The golden-hour light is beautiful and on-brand. One catch:
+in the reference, Michael is **backlit** by the bright windows, which an iPhone fights (dark
+face or blown-out skyline). The fix:
+- **Turn 45 to 90 degrees** so the window light keys the side of the face instead of sitting
+  behind it. Keep the skyline in frame at an angle, slightly out of focus, so it reads as
+  premium backdrop without competing.
+- **Add a soft fill** on the face if it still reads dark (a small LED panel, or a white bounce).
+- **Shoot at golden hour** when the window light is soft and low, and **lock exposure on the
+  face**, accepting a slightly brighter window over a dark face.
 
 ## Step 2, The five-force build (the tactile centerpiece)
 The five forces assemble on the desk as **cards**, one added per beat, built with **end-frame
