@@ -20,14 +20,25 @@ in Higgsfield. Can be run in the Higgsfield app or driven from Claude via the Hi
 
 ---
 
-## Step 0, the hero reference still (do this first, lock it)
-**Nano Banana Pro prompt:**
+## Step 0, lock the look, then the hero reference still
+This is the cohesion key, so do it first and do it by eye. Claude Desktop is the smoother seat
+for this part because you see options inline.
+
+**0a. Source the grade in Flim.** Search Flim for the look: `flat lay`, `top down desk
+notebook`, `hand drawing diagram`, `warm natural light interior`. Download one or two real
+cinema stills that feel like us, warm, tactile, soft natural light, shallow focus. **This is
+where the cinematic grade comes from, not from a prompt.**
+
+**0b. Generate the hero still in Nano Banana Pro (inside Higgsfield),** with the Flim still
+attached as the style reference:
 > Top-down view of an open cream notebook on a warm wood desk, soft natural window light from
 > the side, a faint hand-drawn pencil pyramid outline on the page, two or three blank sticky
 > notes and a felt-tip marker resting nearby, shallow depth of field, fine film grain, calm and
-> tactile, 9:16 vertical.
+> tactile, 9:16 vertical. Match the style and grade of the attached reference image.
 
-Generate a few, approve one. **This is THE reference image for the whole pilot.**
+**0c.** Generate a few, approve one. **That approved still is THE reference image for every shot
+in the pilot.** From here, the first shot's frame rolls forward as the reference so the desk
+never drifts.
 
 ---
 
